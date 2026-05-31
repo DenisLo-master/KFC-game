@@ -225,7 +225,7 @@ describe('scene visual state contract', () => {
 
     expect(state.threatCue).toBe('shadowEyes');
     expect(state.customer.eyeColor).toBe(state.cueColors.shadowEyes);
-    expect(state.customer.eyeGlow).toBeGreaterThan(0);
+    expect(state.customer.eyeGlow).toBe(0);
     expect(state.customer.armLength).toBe(1);
     expect(state.customer.smileGlow).toBe(0);
   });

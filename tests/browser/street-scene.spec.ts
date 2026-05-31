@@ -1,4 +1,133 @@
 import { expect, test } from '@playwright/test';
+import { inflateSync } from 'node:zlib';
+
+type PngPixels = {
+  width: number;
+  height: number;
+  data: Uint8Array;
+};
+
+function concatBytes(chunks: Uint8Array[]) {
+  const totalLength = chunks.reduce((total, chunk) => total + chunk.length, 0);
+  const bytes = new Uint8Array(totalLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.length;
+  }
+  return bytes;
+}
+
+function decodePngRgba(png: Uint8Array): PngPixels {
+  let offset = 8;
+  let width = 0;
+  let height = 0;
+  let colorType = 0;
+  const idatChunks: Uint8Array[] = [];
+
+  while (offset < png.length) {
+    const length = (png[offset] << 24) | (png[offset + 1] << 16) | (png[offset + 2] << 8) | png[offset + 3];
+    const type = String.fromCharCode(png[offset + 4], png[offset + 5], png[offset + 6], png[offset + 7]);
+    const dataStart = offset + 8;
+    const dataEnd = dataStart + length;
+
+    if (type === 'IHDR') {
+      width = (png[dataStart] << 24) | (png[dataStart + 1] << 16) | (png[dataStart + 2] << 8) | png[dataStart + 3];
+      height = (png[dataStart + 4] << 24) | (png[dataStart + 5] << 16) | (png[dataStart + 6] << 8) | png[dataStart + 7];
+      colorType = png[dataStart + 9];
+      const bitDepth = png[dataStart + 8];
+      if (bitDepth !== 8 || (colorType !== 2 && colorType !== 6)) {
+        throw new Error(`Unsupported PNG format: bitDepth=${bitDepth}, colorType=${colorType}`);
+      }
+    } else if (type === 'IDAT') {
+      idatChunks.push(png.slice(dataStart, dataEnd));
+    } else if (type === 'IEND') {
+      break;
+    }
+
+    offset = dataEnd + 4;
+  }
+
+  const channels = colorType === 6 ? 4 : 3;
+  const rowLength = width * channels;
+  const inflated = inflateSync(concatBytes(idatChunks));
+  const rawRows = new Uint8Array(inflated);
+  const rgba = new Uint8Array(width * height * 4);
+  let rawOffset = 0;
+  let rgbaOffset = 0;
+  let previous = new Uint8Array(rowLength);
+
+  for (let y = 0; y < height; y += 1) {
+    const filter = rawRows[rawOffset];
+    rawOffset += 1;
+    const row = rawRows.slice(rawOffset, rawOffset + rowLength);
+    rawOffset += rowLength;
+    const unfiltered = new Uint8Array(rowLength);
+
+    for (let x = 0; x < rowLength; x += 1) {
+      const left = x >= channels ? unfiltered[x - channels] : 0;
+      const up = previous[x] ?? 0;
+      const upLeft = x >= channels ? previous[x - channels] : 0;
+      const paethP = left + up - upLeft;
+      const paethA = Math.abs(paethP - left);
+      const paethB = Math.abs(paethP - up);
+      const paethC = Math.abs(paethP - upLeft);
+      const paeth = paethA <= paethB && paethA <= paethC ? left : paethB <= paethC ? up : upLeft;
+      const predictor = filter === 1 ? left : filter === 2 ? up : filter === 3 ? Math.floor((left + up) / 2) : filter === 4 ? paeth : 0;
+      unfiltered[x] = (row[x] + predictor) & 255;
+    }
+
+    for (let x = 0; x < width; x += 1) {
+      const sourceOffset = x * channels;
+      rgba[rgbaOffset] = unfiltered[sourceOffset];
+      rgba[rgbaOffset + 1] = unfiltered[sourceOffset + 1];
+      rgba[rgbaOffset + 2] = unfiltered[sourceOffset + 2];
+      rgba[rgbaOffset + 3] = colorType === 6 ? unfiltered[sourceOffset + 3] : 255;
+      rgbaOffset += 4;
+    }
+
+    previous = unfiltered;
+  }
+
+  return { width, height, data: rgba };
+}
+
+function getPixelVariance(pixels: PngPixels) {
+  const buckets = new Set<string>();
+  const background = { r: 9, g: 11, b: 13 };
+  let totalSamples = 0;
+  let nonBackgroundSamples = 0;
+  let lumaSum = 0;
+  let lumaSquaredSum = 0;
+
+  for (let y = 0; y < pixels.height; y += 8) {
+    for (let x = 0; x < pixels.width; x += 8) {
+      const offset = (y * pixels.width + x) * 4;
+      const r = pixels.data[offset];
+      const g = pixels.data[offset + 1];
+      const b = pixels.data[offset + 2];
+      const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      const distanceFromBackground = Math.abs(r - background.r) + Math.abs(g - background.g) + Math.abs(b - background.b);
+
+      totalSamples += 1;
+      lumaSum += luma;
+      lumaSquaredSum += luma * luma;
+      buckets.add(`${Math.round(r / 24)}-${Math.round(g / 24)}-${Math.round(b / 24)}`);
+      if (distanceFromBackground > 28) {
+        nonBackgroundSamples += 1;
+      }
+    }
+  }
+
+  const meanLuma = lumaSum / Math.max(totalSamples, 1);
+  return {
+    width: pixels.width,
+    height: pixels.height,
+    distinctColorBuckets: buckets.size,
+    lumaVariance: lumaSquaredSum / Math.max(totalSamples, 1) - meanLuma * meanLuma,
+    nonBackgroundRatio: nonBackgroundSamples / Math.max(totalSamples, 1),
+  };
+}
 
 test.describe('Phase 2 pre-shift street scene', () => {
   test('first load exposes a KFS street scene while keeping quick start available', async ({ page }) => {
@@ -12,6 +141,27 @@ test.describe('Phase 2 pre-shift street scene', () => {
     await expect(page.getByTestId('street-pedestrian-flow')).toContainText(/future visitor/i);
     await expect(page.getByTestId('pre-shift-safety')).toContainText(/safe observation/i);
     await expect(page.getByRole('button', { name: 'Start Shift' })).toBeVisible();
+  });
+
+  test('canvas renders a nonblank kiosk scene on desktop and phone landscape', async ({ page }) => {
+    for (const viewport of [
+      { width: 1280, height: 720 },
+      { width: 667, height: 375 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto('/');
+      const canvas = page.locator('canvas');
+      await expect(canvas).toBeVisible();
+      await page.waitForTimeout(350);
+
+      const renderState = getPixelVariance(decodePngRgba(await canvas.screenshot()));
+
+      expect(renderState.width).toBeGreaterThan(300);
+      expect(renderState.height).toBeGreaterThan(200);
+      expect(renderState.distinctColorBuckets).toBeGreaterThan(8);
+      expect(renderState.lumaVariance).toBeGreaterThan(25);
+      expect(renderState.nonBackgroundRatio).toBeGreaterThan(0.04);
+    }
   });
 
   test('pre-shift ambience changes while waiting without starting gameplay or penalties', async ({ page }) => {

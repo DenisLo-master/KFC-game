@@ -88,6 +88,19 @@ test.describe('Phase 4 visitor readability', () => {
     await expect(page.getByTestId('sample-shadowEyes')).toContainText(/unblinking dark eyes/i);
     await expect(page.getByTestId('sample-longArms')).toContainText(/too-low sleeves/i);
     await expect(page.getByTestId('sample-staticSmile')).toContainText(/fixed smile/i);
+
+    const shadowEyeCue = await page
+      .locator('[data-testid="sample-shadowEyes"] .sample-eye')
+      .first()
+      .evaluate((element) => {
+        const style = getComputedStyle(element);
+        return {
+          backgroundColor: style.backgroundColor,
+          boxShadow: style.boxShadow,
+        };
+      });
+    expect(shadowEyeCue.backgroundColor).toBe('rgb(2, 6, 23)');
+    expect(shadowEyeCue.boxShadow).toBe('none');
   });
 
   for (const cue of activeCueCases) {

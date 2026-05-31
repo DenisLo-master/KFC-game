@@ -210,8 +210,10 @@ function PreShiftStreetStatus() {
       <div className="worker-identity-context" data-testid="worker-identity-context">
         <strong>KFS worker</strong>
         <span>olive-yellow uniform</span>
+        <span>apron sleeves</span>
         <span>badge</span>
         <span>shift checklist</span>
+        <span>spatula</span>
       </div>
       <div className="ordinary-archetype-matrix" data-testid="ordinary-archetype-matrix" aria-label="ordinary street archetypes">
         {street.pedestrians.map((pedestrian) => (
@@ -288,7 +290,7 @@ function Overlay() {
                 Settings
               </button>
             </div>
-            {menuTab === 'start' && <p>The KFS window is lit. Start when you are ready to open service.</p>}
+            {menuTab === 'start' && <p>The KFS window is lit over wet asphalt. Open service when the next visitor reaches the glass.</p>}
             {menuTab === 'how' && (
               <ul className="how-list">
                 <li>Esc pauses or resumes the shift.</li>
@@ -303,7 +305,7 @@ function Overlay() {
                   <input type="checkbox" defaultChecked /> Audio cues placeholder
                 </label>
                 <label>
-                  <input type="checkbox" defaultChecked /> Low-poly quality
+                  <input type="checkbox" defaultChecked /> Reference quality
                 </label>
               </div>
             )}
@@ -579,7 +581,7 @@ export function Hud() {
         </button>
       </div>
 
-      <aside className={`panel left-panel ${expandedOrderPinned ? 'expanded-order' : ''}`} data-testid="order-panel">
+      <aside className={`panel left-panel terminal-panel ${expandedOrderPinned ? 'expanded-order' : ''}`} data-testid="order-panel">
         <div className="panel-title">
           <h2>Order</h2>
           <button
@@ -631,7 +633,7 @@ export function Hud() {
         <div className="message">{message}</div>
       </aside>
 
-      <aside className="panel right-panel" data-testid="prep-panel">
+      <aside className="panel right-panel station-board-panel" data-testid="prep-panel">
         <h2>Prep</h2>
         <div className="tray-grid">
           <span>Fries</span>

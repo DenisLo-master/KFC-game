@@ -82,9 +82,9 @@ export type SceneVisualStateInput = {
 };
 
 const cueColors = {
-  shadowEyes: '#020617',
-  longArms: '#f43f5e',
-  staticSmile: '#22d3ee',
+  shadowEyes: '#050403',
+  longArms: '#758267',
+  staticSmile: '#6aa69b',
 } as const;
 
 const anomalyCueDescriptors: Record<Exclude<AnomalyKind, 'normal'>, AnomalyCueDescriptor> = {
@@ -116,7 +116,7 @@ const archetypePresentation: Record<StreetArchetype, Omit<VisitorPresentationVis
   courier: {
     primaryMarker: 'deliveryBox',
     silhouette: 'boxy',
-    palette: '#f97316',
+    palette: '#8c681c',
   },
   shopper: {
     primaryMarker: 'shoppingBag',
@@ -225,21 +225,21 @@ export function getSceneVisualState({ anomalyKind, shutterClosed, holdProgress, 
     cueColors,
     threatCue,
     street: getStreetVisualState({ anomalyKind, customerStreet }),
-    anomalyHaloColor: '#7f1d1d',
+    anomalyHaloColor: '#5f7a52',
     customerVisible: !shutterClosed,
     safeFromAnomaly: shutterClosed,
     protectionStatus: shutterClosed ? ('closed' as const) : charging ? ('charging' as const) : ('idle' as const),
     customer: {
-      bodyColor: anomaly ? '#4a1d2e' : '#2f6f73',
-      headColor: anomaly ? '#d8c2b0' : '#f3c9a5',
+      bodyColor: anomaly ? '#34382c' : '#2f3a2d',
+      headColor: anomaly ? '#c7ad94' : '#d2ad8b',
       eyeColor: threatCue === 'shadowEyes' ? cueColors.shadowEyes : '#f8fafc',
-      eyeGlow: threatCue === 'shadowEyes' ? 0.8 : 0,
-      eyeScale: threatCue === 'shadowEyes' ? 1.35 : 1,
+      eyeGlow: 0,
+      eyeScale: threatCue === 'shadowEyes' ? 1.22 : 1,
       armLength: threatCue === 'longArms' ? 1.85 : 1,
-      armColor: threatCue === 'longArms' ? cueColors.longArms : anomaly ? '#4a1d2e' : '#2f6f73',
+      armColor: threatCue === 'longArms' ? cueColors.longArms : anomaly ? '#34382c' : '#2f3a2d',
       smileColor: threatCue === 'staticSmile' ? cueColors.staticSmile : '#111827',
-      smileGlow: threatCue === 'staticSmile' ? 0.9 : 0,
-      haloColor: anomaly ? '#ef4444' : '#0f766e',
+      smileGlow: threatCue === 'staticSmile' ? 0.42 : 0,
+      haloColor: anomaly ? '#5f7a52' : '#7f6f2a',
     },
     shutter: {
       blocksCustomer: shutterClosed,
