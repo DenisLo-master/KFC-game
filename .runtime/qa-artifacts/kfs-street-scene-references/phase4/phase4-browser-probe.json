@@ -1,0 +1,398 @@
+{
+  "capturedAt": "2026-05-31T14:25:49.833Z",
+  "targetUrl": "http://localhost:4174/",
+  "phase4EvidenceFix": {
+    "capturedAt": "2026-05-31T14:35:00.000Z",
+    "targetPath": "/?phase4-readability=1",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    },
+    "controlPath": "window.__kfsPhase4SetActiveCustomer(kind) sets a real active currentCustomer through the Zustand store fixture; HUD marker reads currentCustomer/getSceneVisualState.",
+    "redEvidence": "npx playwright test tests/browser/phase4-readability.spec.ts --project=chromium failed 4 active current-customer cases before the debug hook/HUD active marker existed.",
+    "greenEvidence": "npx playwright test tests/browser/phase4-readability.spec.ts --project=chromium passed 7/7 after the fix.",
+    "artifacts": [
+      {
+        "name": "active-normal-current-customer",
+        "kind": "normal",
+        "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/active-normal-current-customer.png",
+        "cue": "ordinary"
+      },
+      {
+        "name": "active-anomaly-shadowEyes",
+        "kind": "shadowEyes",
+        "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/active-anomaly-shadowEyes.png",
+        "cue": "unblinking dark eyes"
+      },
+      {
+        "name": "active-anomaly-longArms",
+        "kind": "longArms",
+        "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/active-anomaly-longArms.png",
+        "cue": "too-low sleeves"
+      },
+      {
+        "name": "active-anomaly-staticSmile",
+        "kind": "staticSmile",
+        "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/active-anomaly-staticSmile.png",
+        "cue": "fixed smile"
+      }
+    ],
+    "consoleErrors": [],
+    "failedRequests": [],
+    "residualRisk": "Default 3-worker Playwright run showed browser target crashes/timeouts in this environment; serial full-suite run passed 18/18."
+  },
+  "records": [
+    {
+      "name": "desktop-pre-shift-archetypes-worker-samples",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/desktop-pre-shift-archetypes-worker-samples.png",
+      "overflow": false,
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting..."
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected."
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x3c0016ca00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x3c0016dc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x3c0016ca00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        },
+        {
+          "type": "warning",
+          "text": "[.WebGL-0x3c0016ca00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "name": "phone-landscape-pre-shift-readability",
+      "viewport": {
+        "width": 667,
+        "height": 375
+      },
+      "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/phone-landscape-pre-shift-readability.png",
+      "overflow": false,
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting..."
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected."
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "name": "tablet-landscape-pre-shift-readability",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/tablet-landscape-pre-shift-readability.png",
+      "overflow": false,
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting..."
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected."
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "name": "portrait-gate-worker-context",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/portrait-gate-worker-context.png",
+      "overflow": false,
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting..."
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected."
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "name": "active-normal-current-customer",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/active-normal-current-customer.png",
+      "overflow": false,
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting..."
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected."
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        }
+      ],
+      "failedRequests": []
+    },
+    {
+      "name": "active-anomaly-cue-samples",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "path": ".runtime/qa-artifacts/kfs-street-scene-references/phase4/active-anomaly-cue-samples.png",
+      "overflow": false,
+      "consoleMessages": [
+        {
+          "type": "debug",
+          "text": "[vite] connecting..."
+        },
+        {
+          "type": "debug",
+          "text": "[vite] connected."
+        },
+        {
+          "type": "info",
+          "text": "%cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 8 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GPOS table LookupType 5 format 1"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 2"
+        },
+        {
+          "type": "debug",
+          "text": "unsupported GSUB table LookupType 6 format 1"
+        }
+      ],
+      "failedRequests": []
+    }
+  ]
+}

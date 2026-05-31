@@ -1,0 +1,398 @@
+{
+  "targetUrl": "http://127.0.0.1:4174/",
+  "artifactDir": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4",
+  "generatedAt": "2026-05-31T10:54:43.585Z",
+  "artifacts": [
+    {
+      "name": "desktop-gameplay-normal-customer",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/desktop-gameplay-normal-customer.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "normal",
+      "patch": {},
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "hud": {
+          "x": 10,
+          "y": 10,
+          "width": 1420,
+          "height": 62
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 86,
+          "width": 280,
+          "height": 278.2
+        },
+        "actionDock": {
+          "x": 10,
+          "y": 791,
+          "width": 1420,
+          "height": 73
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer22Mistakes0/3Threat0%PauseReset",
+        "orderText": "OrderTabLv 1QA Normalat window1 x friesno drinkEsc pauseE quickTab detailsQA normal customer visual state.",
+        "canvasPixels": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440,
+          "clientHeight": 900
+        }
+      }
+    },
+    {
+      "name": "desktop-gameplay-normal-customer-canvas",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/desktop-gameplay-normal-customer-canvas.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "normal",
+      "patch": {},
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "hud": {
+          "x": 10,
+          "y": 10,
+          "width": 1420,
+          "height": 62
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 86,
+          "width": 280,
+          "height": 278.2
+        },
+        "actionDock": {
+          "x": 10,
+          "y": 791,
+          "width": 1420,
+          "height": 73
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer22Mistakes0/3Threat0%PauseReset",
+        "orderText": "OrderTabLv 1QA Normalat window1 x friesno drinkEsc pauseE quickTab detailsQA normal customer visual state.",
+        "canvasPixels": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440,
+          "clientHeight": 900
+        }
+      }
+    },
+    {
+      "name": "phone-landscape-gameplay",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/phone-landscape-gameplay.png",
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "kind": "normal",
+      "patch": {},
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "hud": {
+          "x": 6,
+          "y": 6,
+          "width": 832,
+          "height": 58
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 64,
+          "width": 235,
+          "height": 240
+        },
+        "actionDock": {
+          "x": 6,
+          "y": 315,
+          "width": 832,
+          "height": 69
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer22Mistakes0/3Threat0%PauseReset",
+        "orderText": "OrderTabLv 1QA Normalat window1 x friesno drinkEsc pauseE quickTab detailsQA normal customer visual state.",
+        "canvasPixels": {
+          "width": 844,
+          "height": 390,
+          "clientWidth": 844,
+          "clientHeight": 390
+        }
+      }
+    },
+    {
+      "name": "tablet-landscape-gameplay",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/tablet-landscape-gameplay.png",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "kind": "normal",
+      "patch": {},
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 768
+        },
+        "hud": {
+          "x": 10,
+          "y": 10,
+          "width": 1004,
+          "height": 62
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 86,
+          "width": 280,
+          "height": 278.2
+        },
+        "actionDock": {
+          "x": 10,
+          "y": 659,
+          "width": 1004,
+          "height": 73
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer22Mistakes0/3Threat0%PauseReset",
+        "orderText": "OrderTabLv 1QA Normalat window1 x friesno drinkEsc pauseE quickTab detailsQA normal customer visual state.",
+        "canvasPixels": {
+          "width": 1024,
+          "height": 768,
+          "clientWidth": 1024,
+          "clientHeight": 768
+        }
+      }
+    },
+    {
+      "name": "anomaly-shadowEyes",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/anomaly-shadowEyes.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "shadowEyes",
+      "patch": {},
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "hud": {
+          "x": 10,
+          "y": 10,
+          "width": 1420,
+          "height": 62
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 86,
+          "width": 280,
+          "height": 278.2
+        },
+        "actionDock": {
+          "x": 10,
+          "y": 791,
+          "width": 1420,
+          "height": 73
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer16Mistakes0/3Threat38%PauseReset",
+        "orderText": "OrderTabLv 1QA shadowEyesat window1 x friesno drinkEsc pauseE quickTab detailsQA anomaly shadowEyes visual state.",
+        "canvasPixels": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440,
+          "clientHeight": 900
+        }
+      }
+    },
+    {
+      "name": "anomaly-longArms",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/anomaly-longArms.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "longArms",
+      "patch": {},
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "hud": {
+          "x": 10,
+          "y": 10,
+          "width": 1420,
+          "height": 62
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 86,
+          "width": 280,
+          "height": 278.2
+        },
+        "actionDock": {
+          "x": 10,
+          "y": 791,
+          "width": 1420,
+          "height": 73
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer16Mistakes0/3Threat38%PauseReset",
+        "orderText": "OrderTabLv 1QA longArmsat window1 x friesno drinkEsc pauseE quickTab detailsQA anomaly longArms visual state.",
+        "canvasPixels": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440,
+          "clientHeight": 900
+        }
+      }
+    },
+    {
+      "name": "anomaly-staticSmile",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/anomaly-staticSmile.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "staticSmile",
+      "patch": {},
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "hud": {
+          "x": 10,
+          "y": 10,
+          "width": 1420,
+          "height": 62
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 86,
+          "width": 280,
+          "height": 278.2
+        },
+        "actionDock": {
+          "x": 10,
+          "y": 791,
+          "width": 1420,
+          "height": 73
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer16Mistakes0/3Threat38%PauseReset",
+        "orderText": "OrderTabLv 1QA staticSmileat window1 x friesno drinkEsc pauseE quickTab detailsQA anomaly staticSmile visual state.",
+        "canvasPixels": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440,
+          "clientHeight": 900
+        }
+      }
+    },
+    {
+      "name": "shutter-closed-protection-state",
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/shutter-closed-protection-state.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "kind": "shadowEyes",
+      "patch": {
+        "shutterClosed": true,
+        "shutterTimer": 0.65,
+        "holdProgress": 2,
+        "message": "QA shutter closed visual state."
+      },
+      "sanity": {
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 900
+        },
+        "hud": {
+          "x": 10,
+          "y": 10,
+          "width": 1420,
+          "height": 62
+        },
+        "orderPanel": {
+          "x": 10,
+          "y": 86,
+          "width": 280,
+          "height": 278.2
+        },
+        "actionDock": {
+          "x": 10,
+          "y": 791,
+          "width": 1420,
+          "height": 73
+        },
+        "hasPageScroll": false,
+        "hudText": "Score0Shift86Customer16Mistakes0/3Threat38%PauseReset",
+        "orderText": "OrderTabLv 1QA shadowEyesat window1 x friesno drinkEsc pauseE quickTab detailsQA shutter closed visual state.",
+        "canvasPixels": {
+          "width": 1440,
+          "height": 900,
+          "clientWidth": 1440,
+          "clientHeight": 900
+        }
+      }
+    }
+  ],
+  "portraitGate": {
+    "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/portrait-rotate-gate.png",
+    "sanity": {
+      "gateVisible": true,
+      "gateText": "Please rotate your device horizontally.",
+      "startVisible": true
+    }
+  },
+  "consoleMessages": [
+    "[warning] [.WebGL-0x4c00169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[warning] [.WebGL-0x4c0016a800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[warning] [.WebGL-0x4c00169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "[warning] [.WebGL-0x4c00169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+  ],
+  "requestFailures": [],
+  "performanceSanity": {
+    "frames": 90,
+    "avgFrameMs": 16.53,
+    "p95FrameMs": 16.7,
+    "maxFrameMs": 16.8,
+    "longFramesOver50ms": 0
+  },
+  "notes": [
+    "Deterministic visual states were set via browser eval importing /src/app/store.ts and mutating Zustand runtime state only.",
+    "No runtime source files were edited by QA."
+  ]
+}

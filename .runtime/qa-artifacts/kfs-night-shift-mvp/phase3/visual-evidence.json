@@ -1,0 +1,127 @@
+{
+  "targetUrl": "http://127.0.0.1:4174/",
+  "artifactDir": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3",
+  "screenshots": [
+    {
+      "state": "portrait rotate gate",
+      "viewport": "390x844",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3/portrait-390x844-rotate-gate.png"
+    },
+    {
+      "state": "phone landscape gameplay HUD",
+      "viewport": "844x390",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3/phone-844x390-gameplay-hud.png"
+    },
+    {
+      "state": "hold progress active",
+      "viewport": "844x390",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3/phone-844x390-hold-progress.png"
+    },
+    {
+      "state": "pause overlay",
+      "viewport": "844x390",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3/phone-844x390-paused.png"
+    },
+    {
+      "state": "resumed gameplay",
+      "viewport": "844x390",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3/phone-844x390-resumed.png"
+    },
+    {
+      "state": "reset to menu",
+      "viewport": "844x390",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3/phone-844x390-reset-menu.png"
+    },
+    {
+      "state": "tablet landscape gameplay HUD",
+      "viewport": "1024x768",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase3/tablet-1024x768-gameplay-hud.png"
+    }
+  ],
+  "checks": {
+    "portraitGateVisible": true,
+    "startVisibleBehindGate": true,
+    "phoneNoPageScroll": true,
+    "phoneHudText": "SCORE\n0\nSHIFT\n90\nCUSTOMER\n24\nMISTAKES\n0/3\nTHREAT\n0%\nPause\nReset",
+    "phoneTouchTargets": [
+      {
+        "label": "Pause",
+        "width": 61,
+        "height": 44,
+        "pass44": true
+      },
+      {
+        "label": "Reset",
+        "width": 61,
+        "height": 44,
+        "pass44": true
+      },
+      {
+        "label": "Fryer",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Grill Burger",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Oven nuggets",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Oven strips",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Drink",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Serve",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Quick",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Clear",
+        "width": 82,
+        "height": 55,
+        "pass44": true
+      },
+      {
+        "label": "Hold Shutter",
+        "width": 111,
+        "height": 44,
+        "pass44": true
+      }
+    ],
+    "holdProgressDuringHold": "35",
+    "holdProgressAfterRelease": "0",
+    "tabletHudText": "SCORE\n0\nSHIFT\n90\nCUSTOMER\n24\nMISTAKES\n0/3\nTHREAT\n0%\nPause\nReset",
+    "tabletActionDockVisible": true,
+    "tabletPrepPanelVisible": true,
+    "tabletOrderPanelVisible": true
+  },
+  "consoleFindings": [
+    "warning: [.WebGL-0x3400163600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x340016a200]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x3400163600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+    "warning: [.WebGL-0x3400163600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+  ]
+}

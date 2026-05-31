@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-05-31T13:34:46.332Z",
+  "targetUrl": "http://127.0.0.1:4173/",
+  "method": "Playwright production preview requestAnimationFrame sampling fallback, not Lighthouse/trace",
+  "residualRisk": "No Lighthouse/Chrome trace captured; Vite build chunk-size warning remains. Steady-state rAF fallback after warmup showed a 30.21ms average frame interval with 4 sampled frames just over 50ms in headless Chromium.",
+  "metrics": {
+    "samples": 120,
+    "avgFrameMs": 31.85,
+    "p95FrameMs": 50,
+    "maxFrameMs": 333.3,
+    "longFramesOver50ms": 5,
+    "heapBytes": 10000000,
+    "domNodes": 151
+  },
+  "steadyStateMetrics": {
+    "samples": 160,
+    "warmupDiscarded": 20,
+    "avgFrameMs": 30.21,
+    "p95FrameMs": 50,
+    "maxFrameMs": 50.1,
+    "longFramesOver50ms": 4,
+    "heapBytes": 10000000,
+    "domNodes": 151
+  },
+  "qaAssessment": "fallback-pass-with-residual-risk"
+}

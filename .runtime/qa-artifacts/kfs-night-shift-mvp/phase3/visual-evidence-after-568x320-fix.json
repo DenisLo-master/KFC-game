@@ -1,0 +1,453 @@
+{
+  "capturedAt": "2026-05-31T10:41:31.259Z",
+  "results": [
+    {
+      "name": "small-landscape-568x320",
+      "width": 568,
+      "height": 320,
+      "file": "small-landscape-568x320-after-fix.png",
+      "screenshot": ".runtime/qa-artifacts/kfs-night-shift-mvp/phase3/small-landscape-568x320-after-fix.png",
+      "consoleMessages": [
+        "debug: [vite] connecting...",
+        "debug: [vite] connected.",
+        "info: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold",
+        "warning: [.WebGL-0x4c00167c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "warning: [.WebGL-0x4c0016e800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "warning: [.WebGL-0x4c00167c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+        "warning: [.WebGL-0x4c00167c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+      ],
+      "metrics": {
+        "viewport": {
+          "width": 568,
+          "height": 320
+        },
+        "documentScroll": {
+          "scrollWidth": 568,
+          "scrollHeight": 320,
+          "overflowX": false,
+          "overflowY": false
+        },
+        "dock": {
+          "rect": {
+            "x": 6,
+            "y": 245,
+            "width": 556,
+            "height": 69,
+            "right": 562,
+            "bottom": 314
+          },
+          "clientWidth": 554,
+          "scrollWidth": 554,
+          "clientHeight": 67,
+          "scrollHeight": 67,
+          "overflowX": false,
+          "overflowY": false,
+          "withinViewport": true
+        },
+        "controls": [
+          {
+            "matcher": "/^Fryer/i",
+            "label": "Fryer",
+            "rect": {
+              "x": 13,
+              "y": 252,
+              "width": 49.75,
+              "height": 55,
+              "right": 62.75,
+              "bottom": 307
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Grill Burger/i",
+            "label": "Grill Burger",
+            "rect": {
+              "x": 68.75,
+              "y": 252,
+              "width": 49.75,
+              "height": 55,
+              "right": 118.5,
+              "bottom": 307
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Oven nuggets/i",
+            "label": "Oven nuggets",
+            "rect": {
+              "x": 124.5,
+              "y": 252,
+              "width": 49.75,
+              "height": 55,
+              "right": 174.25,
+              "bottom": 307
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Oven strips/i",
+            "label": "Oven strips",
+            "rect": {
+              "x": 180.25,
+              "y": 252,
+              "width": 49.75,
+              "height": 55,
+              "right": 230,
+              "bottom": 307
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Drink/i",
+            "label": "Drink",
+            "rect": {
+              "x": 236,
+              "y": 252,
+              "width": 49.75,
+              "height": 55,
+              "right": 285.75,
+              "bottom": 307
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Serve$/i",
+            "label": "Serve",
+            "rect": {
+              "x": 291.75,
+              "y": 252,
+              "width": 49.75,
+              "height": 55,
+              "right": 341.5,
+              "bottom": 307
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/hold shutter/i",
+            "label": "Hold Shutter",
+            "rect": {
+              "x": 459,
+              "y": 252,
+              "width": 96,
+              "height": 44,
+              "right": 555,
+              "bottom": 296
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "phone-landscape-667x375",
+      "width": 667,
+      "height": 375,
+      "file": "phone-landscape-667x375-after-fix.png",
+      "screenshot": ".runtime/qa-artifacts/kfs-night-shift-mvp/phase3/phone-landscape-667x375-after-fix.png",
+      "consoleMessages": [
+        "debug: [vite] connecting...",
+        "debug: [vite] connected.",
+        "info: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+      ],
+      "metrics": {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "documentScroll": {
+          "scrollWidth": 667,
+          "scrollHeight": 375,
+          "overflowX": false,
+          "overflowY": false
+        },
+        "dock": {
+          "rect": {
+            "x": 6,
+            "y": 300,
+            "width": 655,
+            "height": 69,
+            "right": 661,
+            "bottom": 369
+          },
+          "clientWidth": 653,
+          "scrollWidth": 653,
+          "clientHeight": 67,
+          "scrollHeight": 67,
+          "overflowX": false,
+          "overflowY": false,
+          "withinViewport": true
+        },
+        "controls": [
+          {
+            "matcher": "/^Fryer/i",
+            "label": "Fryer",
+            "rect": {
+              "x": 13,
+              "y": 307,
+              "width": 62.13,
+              "height": 55,
+              "right": 75.13,
+              "bottom": 362
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Grill Burger/i",
+            "label": "Grill Burger",
+            "rect": {
+              "x": 81.13,
+              "y": 307,
+              "width": 62.13,
+              "height": 55,
+              "right": 143.25,
+              "bottom": 362
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Oven nuggets/i",
+            "label": "Oven nuggets",
+            "rect": {
+              "x": 149.25,
+              "y": 307,
+              "width": 62.13,
+              "height": 55,
+              "right": 211.38,
+              "bottom": 362
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Oven strips/i",
+            "label": "Oven strips",
+            "rect": {
+              "x": 217.38,
+              "y": 307,
+              "width": 62.13,
+              "height": 55,
+              "right": 279.5,
+              "bottom": 362
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Drink/i",
+            "label": "Drink",
+            "rect": {
+              "x": 285.5,
+              "y": 307,
+              "width": 62.13,
+              "height": 55,
+              "right": 347.63,
+              "bottom": 362
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Serve$/i",
+            "label": "Serve",
+            "rect": {
+              "x": 353.63,
+              "y": 307,
+              "width": 62.13,
+              "height": 55,
+              "right": 415.75,
+              "bottom": 362
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/hold shutter/i",
+            "label": "Hold Shutter",
+            "rect": {
+              "x": 558,
+              "y": 307,
+              "width": 96,
+              "height": 44,
+              "right": 654,
+              "bottom": 351
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "tablet-landscape-1024x768",
+      "width": 1024,
+      "height": 768,
+      "file": "tablet-landscape-1024x768-after-fix.png",
+      "screenshot": ".runtime/qa-artifacts/kfs-night-shift-mvp/phase3/tablet-landscape-1024x768-after-fix.png",
+      "consoleMessages": [
+        "debug: [vite] connecting...",
+        "debug: [vite] connected.",
+        "info: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold"
+      ],
+      "metrics": {
+        "viewport": {
+          "width": 1024,
+          "height": 768
+        },
+        "documentScroll": {
+          "scrollWidth": 1024,
+          "scrollHeight": 768,
+          "overflowX": false,
+          "overflowY": false
+        },
+        "dock": {
+          "rect": {
+            "x": 10,
+            "y": 659,
+            "width": 1004,
+            "height": 73,
+            "right": 1014,
+            "bottom": 732
+          },
+          "clientWidth": 1002,
+          "scrollWidth": 1002,
+          "clientHeight": 71,
+          "scrollHeight": 71,
+          "overflowX": false,
+          "overflowY": false,
+          "withinViewport": true
+        },
+        "controls": [
+          {
+            "matcher": "/^Fryer/i",
+            "label": "Fryer",
+            "rect": {
+              "x": 19,
+              "y": 668,
+              "width": 99.67,
+              "height": 55,
+              "right": 118.67,
+              "bottom": 723
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Grill Burger/i",
+            "label": "Grill Burger",
+            "rect": {
+              "x": 126.67,
+              "y": 668,
+              "width": 99.67,
+              "height": 55,
+              "right": 226.34,
+              "bottom": 723
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Oven nuggets/i",
+            "label": "Oven nuggets",
+            "rect": {
+              "x": 234.34,
+              "y": 668,
+              "width": 99.67,
+              "height": 55,
+              "right": 334.02,
+              "bottom": 723
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Oven strips/i",
+            "label": "Oven strips",
+            "rect": {
+              "x": 342.02,
+              "y": 668,
+              "width": 99.67,
+              "height": 55,
+              "right": 441.69,
+              "bottom": 723
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Drink/i",
+            "label": "Drink",
+            "rect": {
+              "x": 449.69,
+              "y": 668,
+              "width": 99.69,
+              "height": 55,
+              "right": 549.38,
+              "bottom": 723
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/^Serve$/i",
+            "label": "Serve",
+            "rect": {
+              "x": 557.38,
+              "y": 668,
+              "width": 99.67,
+              "height": 55,
+              "right": 657.05,
+              "bottom": 723
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          },
+          {
+            "matcher": "/hold shutter/i",
+            "label": "Hold Shutter",
+            "rect": {
+              "x": 880.39,
+              "y": 668,
+              "width": 124.59,
+              "height": 44,
+              "right": 1004.98,
+              "bottom": 712
+            },
+            "min44": true,
+            "withinViewport": true,
+            "withinDock": true
+          }
+        ]
+      }
+    }
+  ]
+}

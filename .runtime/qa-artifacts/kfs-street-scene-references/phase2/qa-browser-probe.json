@@ -1,0 +1,1222 @@
+{
+  "capturedAt": "2026-05-31T13:34:46.331Z",
+  "targetUrl": "http://127.0.0.1:4173/",
+  "snapshots": [
+    {
+      "name": "desktop-menu",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflow": false,
+      "canvasCount": 1,
+      "preShiftVisible": true,
+      "orientationGate": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "street": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "right": 1280,
+        "bottom": 720,
+        "visible": true
+      },
+      "menuDialog": null,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "orderPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "prepPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "actionDock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "markerTexts": [
+        {
+          "id": "street-kiosk-anchor",
+          "text": "KFS kiosknight window"
+        },
+        {
+          "id": "street-ambient-layer",
+          "text": "wet asphaltsteam and sign glow"
+        },
+        {
+          "id": "street-pedestrian-flow",
+          "text": "future visitorordinary pedestrians"
+        },
+        {
+          "id": "pre-shift-safety",
+          "text": "safe observationmistakes 0 / threat 0 / shift 90"
+        }
+      ],
+      "startButton": {
+        "width": 115.828125,
+        "height": 44,
+        "text": "Start Shift"
+      },
+      "touchTargets": [
+        {
+          "text": "Pause",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Reset",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Tab",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "bun",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "patty",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lettuce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "tomato",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "sauce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lemonade",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "soda",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "smoothie",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "juice",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Fryer",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Grill Burger",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven nuggets",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven strips",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Drink",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Serve",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Quick",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Clear",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Hold Shutter",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Start",
+          "width": 69.015625,
+          "height": 44
+        },
+        {
+          "text": "How to play",
+          "width": 115.828125,
+          "height": 44
+        },
+        {
+          "text": "Settings",
+          "width": 92.421875,
+          "height": 44
+        },
+        {
+          "text": "Start Shift",
+          "width": 115.828125,
+          "height": 44
+        }
+      ],
+      "heapBytes": 10000000,
+      "domNodes": 151
+    },
+    {
+      "name": "phone-landscape-menu",
+      "viewport": {
+        "width": 667,
+        "height": 375
+      },
+      "overflow": false,
+      "canvasCount": 1,
+      "preShiftVisible": true,
+      "orientationGate": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "street": {
+        "x": 0,
+        "y": 0,
+        "width": 667,
+        "height": 375,
+        "right": 667,
+        "bottom": 375,
+        "visible": true
+      },
+      "menuDialog": null,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "orderPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "prepPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "actionDock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "markerTexts": [
+        {
+          "id": "street-kiosk-anchor",
+          "text": "KFS kiosknight window"
+        },
+        {
+          "id": "street-ambient-layer",
+          "text": "wet asphaltsteam and sign glow"
+        },
+        {
+          "id": "street-pedestrian-flow",
+          "text": "future visitorordinary pedestrians"
+        },
+        {
+          "id": "pre-shift-safety",
+          "text": "safe observationmistakes 0 / threat 0 / shift 90"
+        }
+      ],
+      "startButton": {
+        "width": 94.625,
+        "height": 38,
+        "text": "Start Shift"
+      },
+      "touchTargets": [
+        {
+          "text": "Pause",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Reset",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Tab",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "bun",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "patty",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lettuce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "tomato",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "sauce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lemonade",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "soda",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "smoothie",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "juice",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Fryer",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Grill Burger",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven nuggets",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven strips",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Drink",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Serve",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Quick",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Clear",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Hold Shutter",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Start",
+          "width": 55.015625,
+          "height": 38
+        },
+        {
+          "text": "How to play",
+          "width": 94.625,
+          "height": 38
+        },
+        {
+          "text": "Settings",
+          "width": 74.8125,
+          "height": 38
+        },
+        {
+          "text": "Start Shift",
+          "width": 94.625,
+          "height": 38
+        }
+      ],
+      "heapBytes": 10000000,
+      "domNodes": 151
+    },
+    {
+      "name": "tablet-landscape-menu",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "overflow": false,
+      "canvasCount": 1,
+      "preShiftVisible": true,
+      "orientationGate": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "street": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 768,
+        "right": 1024,
+        "bottom": 768,
+        "visible": true
+      },
+      "menuDialog": null,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "orderPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "prepPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "actionDock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "markerTexts": [
+        {
+          "id": "street-kiosk-anchor",
+          "text": "KFS kiosknight window"
+        },
+        {
+          "id": "street-ambient-layer",
+          "text": "wet asphaltsteam and sign glow"
+        },
+        {
+          "id": "street-pedestrian-flow",
+          "text": "future visitorordinary pedestrians"
+        },
+        {
+          "id": "pre-shift-safety",
+          "text": "safe observationmistakes 0 / threat 0 / shift 90"
+        }
+      ],
+      "startButton": {
+        "width": 115.828125,
+        "height": 44,
+        "text": "Start Shift"
+      },
+      "touchTargets": [
+        {
+          "text": "Pause",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Reset",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Tab",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "bun",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "patty",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lettuce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "tomato",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "sauce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lemonade",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "soda",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "smoothie",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "juice",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Fryer",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Grill Burger",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven nuggets",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven strips",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Drink",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Serve",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Quick",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Clear",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Hold Shutter",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Start",
+          "width": 69.015625,
+          "height": 44
+        },
+        {
+          "text": "How to play",
+          "width": 115.828125,
+          "height": 44
+        },
+        {
+          "text": "Settings",
+          "width": 92.421875,
+          "height": 44
+        },
+        {
+          "text": "Start Shift",
+          "width": 115.828125,
+          "height": 44
+        }
+      ],
+      "heapBytes": 10000000,
+      "domNodes": 151
+    },
+    {
+      "name": "portrait-gate-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "canvasCount": 1,
+      "preShiftVisible": true,
+      "orientationGate": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "right": 390,
+        "bottom": 844,
+        "visible": true
+      },
+      "street": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "right": 390,
+        "bottom": 844,
+        "visible": true
+      },
+      "menuDialog": null,
+      "topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "orderPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "prepPanel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "actionDock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "markerTexts": [
+        {
+          "id": "street-kiosk-anchor",
+          "text": "KFS kiosknight window"
+        },
+        {
+          "id": "street-ambient-layer",
+          "text": "wet asphaltsteam and sign glow"
+        },
+        {
+          "id": "street-pedestrian-flow",
+          "text": "future visitorordinary pedestrians"
+        },
+        {
+          "id": "pre-shift-safety",
+          "text": "safe observationmistakes 0 / threat 0 / shift 90"
+        }
+      ],
+      "startButton": {
+        "width": 115.828125,
+        "height": 44,
+        "text": "Start Shift"
+      },
+      "touchTargets": [
+        {
+          "text": "Pause",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Reset",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Tab",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "bun",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "patty",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lettuce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "tomato",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "sauce",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "lemonade",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "soda",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "smoothie",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "juice",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Fryer",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Grill Burger",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven nuggets",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Oven strips",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Drink",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Serve",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Quick",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Clear",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Hold Shutter",
+          "width": 0,
+          "height": 0
+        },
+        {
+          "text": "Start",
+          "width": 69.015625,
+          "height": 44
+        },
+        {
+          "text": "How to play",
+          "width": 115.828125,
+          "height": 44
+        },
+        {
+          "text": "Settings",
+          "width": 92.421875,
+          "height": 44
+        },
+        {
+          "text": "Start Shift",
+          "width": 115.828125,
+          "height": 44
+        }
+      ],
+      "heapBytes": 10000000,
+      "domNodes": 151
+    },
+    {
+      "name": "quick-start-playing",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "overflow": false,
+      "canvasCount": 1,
+      "preShiftVisible": false,
+      "orientationGate": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "street": null,
+      "menuDialog": null,
+      "topbar": {
+        "x": 10,
+        "y": 10,
+        "width": 1260,
+        "height": 62,
+        "right": 1270,
+        "bottom": 72,
+        "visible": true
+      },
+      "orderPanel": {
+        "x": 10,
+        "y": 86,
+        "width": 280,
+        "height": 278.1875,
+        "right": 290,
+        "bottom": 364.1875,
+        "visible": true
+      },
+      "prepPanel": {
+        "x": 990,
+        "y": 86,
+        "width": 280,
+        "height": 490.171875,
+        "right": 1270,
+        "bottom": 576.171875,
+        "visible": true
+      },
+      "actionDock": {
+        "x": 10,
+        "y": 611,
+        "width": 1260,
+        "height": 73,
+        "right": 1270,
+        "bottom": 684,
+        "visible": true
+      },
+      "markerTexts": [],
+      "startButton": null,
+      "touchTargets": [
+        {
+          "text": "Pause",
+          "width": 61.015625,
+          "height": 44
+        },
+        {
+          "text": "Reset",
+          "width": 61.015625,
+          "height": 44
+        },
+        {
+          "text": "Tab",
+          "width": 45.40625,
+          "height": 44
+        },
+        {
+          "text": "bun",
+          "width": 51.609375,
+          "height": 38
+        },
+        {
+          "text": "patty",
+          "width": 66.015625,
+          "height": 38
+        },
+        {
+          "text": "lettuce",
+          "width": 80.421875,
+          "height": 38
+        },
+        {
+          "text": "tomato",
+          "width": 73.21875,
+          "height": 38
+        },
+        {
+          "text": "sauce",
+          "width": 66.015625,
+          "height": 38
+        },
+        {
+          "text": "lemonade",
+          "width": 87.609375,
+          "height": 38
+        },
+        {
+          "text": "soda",
+          "width": 58.8125,
+          "height": 38
+        },
+        {
+          "text": "smoothie",
+          "width": 87.609375,
+          "height": 38
+        },
+        {
+          "text": "juice",
+          "width": 66.015625,
+          "height": 38
+        },
+        {
+          "text": "Fryer",
+          "width": 127.34375,
+          "height": 55
+        },
+        {
+          "text": "Grill Burger",
+          "width": 127.34375,
+          "height": 55
+        },
+        {
+          "text": "Oven nuggets",
+          "width": 127.359375,
+          "height": 55
+        },
+        {
+          "text": "Oven strips",
+          "width": 127.34375,
+          "height": 55
+        },
+        {
+          "text": "Drink",
+          "width": 127.359375,
+          "height": 55
+        },
+        {
+          "text": "Serve",
+          "width": 127.34375,
+          "height": 55
+        },
+        {
+          "text": "Quick",
+          "width": 127.359375,
+          "height": 55
+        },
+        {
+          "text": "Clear",
+          "width": 127.34375,
+          "height": 55
+        },
+        {
+          "text": "Hold Shutter",
+          "width": 159.1875,
+          "height": 44
+        }
+      ],
+      "heapBytes": 10000000,
+      "domNodes": 107
+    }
+  ],
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3c00164800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3c00162400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3c00162400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3c00162400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 8 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GPOS table LookupType 5 format 1"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 2"
+    },
+    {
+      "type": "debug",
+      "text": "unsupported GSUB table LookupType 6 format 1"
+    }
+  ],
+  "failedRequests": [],
+  "httpErrors": []
+}

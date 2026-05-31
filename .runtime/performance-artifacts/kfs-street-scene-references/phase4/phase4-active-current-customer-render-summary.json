@@ -1,0 +1,24 @@
+{
+  "capturedAt": "2026-05-31T15:01:58.824Z",
+  "url": "http://127.0.0.1:4174/?phase4-readability=1",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "activeCustomerStates": [
+    "normal",
+    "shadowEyes",
+    "longArms",
+    "staticSmile"
+  ],
+  "activeVisualLayer": "active-scene-readability-layer",
+  "durationMs": 7937,
+  "traceEvents": 59665,
+  "rafSamples": 119,
+  "avgFrameMs": 35.15,
+  "approxFps": 28.4,
+  "p95FrameMs": 50.1,
+  "maxFrameMs": 50.1,
+  "artifact": ".runtime/performance-artifacts/kfs-street-scene-references/phase4/phase4-active-current-customer-render-trace.json",
+  "note": "CDP trace captured against production preview while cycling the Phase 4 active current-customer readability fixture states with the active visual scene layer visible."
+}

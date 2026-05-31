@@ -1,0 +1,127 @@
+{
+  "capturedAt": "2026-05-31T11:10:36.479Z",
+  "baseURL": "http://127.0.0.1:4174/",
+  "shots": [
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/desktop-normal-customer.png",
+      "bytes": 139629
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/phone-landscape-customer-hud.png",
+      "bytes": 67011
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/tablet-landscape-customer-hud.png",
+      "bytes": 122232
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/portrait-gate.png",
+      "bytes": 77347
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/anomaly-shadowEyes.png",
+      "bytes": 137939
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/anomaly-longArms.png",
+      "bytes": 139290
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/anomaly-staticSmile.png",
+      "bytes": 138310
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/shutter-closed-protection-state.png",
+      "bytes": 162858
+    }
+  ],
+  "renderSanity": {
+    "canvasRect": {
+      "width": 1440,
+      "height": 900
+    },
+    "sampledColorCount": 1,
+    "sampleError": null,
+    "rafFrames": 37,
+    "approxFps": 30,
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.0 Safari/537.36",
+    "note": "Browser canvas readback from live WebGL returned a single sampled color in headless; PNG screenshot sampling below confirms nonblank visual captures."
+  },
+  "consoleMessages": [
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3400163c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3400169000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3400163c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+    },
+    {
+      "type": "warning",
+      "text": "[.WebGL-0x3400163c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    }
+  ],
+  "note": "Visual recapture used browser-side Zustand store eval against Vite dev server; runtime source was not edited.",
+  "screenshotSanity": [
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/desktop-normal-customer.png",
+      "width": 1440,
+      "height": 900,
+      "sampledColorCount": 195,
+      "nonBlackSamples": 412
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/phone-landscape-customer-hud.png",
+      "width": 667,
+      "height": 375,
+      "sampledColorCount": 274,
+      "nonBlackSamples": 545
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/tablet-landscape-customer-hud.png",
+      "width": 1024,
+      "height": 768,
+      "sampledColorCount": 233,
+      "nonBlackSamples": 433
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/portrait-gate.png",
+      "width": 390,
+      "height": 844,
+      "sampledColorCount": 177,
+      "nonBlackSamples": 290
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/anomaly-shadowEyes.png",
+      "width": 1440,
+      "height": 900,
+      "sampledColorCount": 193,
+      "nonBlackSamples": 410
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/anomaly-longArms.png",
+      "width": 1440,
+      "height": 900,
+      "sampledColorCount": 194,
+      "nonBlackSamples": 412
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/anomaly-staticSmile.png",
+      "width": 1440,
+      "height": 900,
+      "sampledColorCount": 194,
+      "nonBlackSamples": 412
+    },
+    {
+      "file": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-night-shift-mvp/phase4/after-readability-fix/shutter-closed-protection-state.png",
+      "width": 1440,
+      "height": 900,
+      "sampledColorCount": 232,
+      "nonBlackSamples": 413
+    }
+  ]
+}
