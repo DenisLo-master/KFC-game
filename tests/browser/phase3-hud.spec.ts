@@ -115,6 +115,32 @@ test.describe('Phase 3 mobile HUD acceptance', () => {
     await shutter.dispatchEvent('pointerup', { pointerId: 1, pointerType: 'touch', isPrimary: true });
   });
 
+  test('active service view exposes zones, worker movement, station feedback, and next-step guidance', async ({ page }) => {
+    await page.setViewportSize({ width: 667, height: 375 });
+    await startShift(page);
+
+    await expect(page.getByTestId('service-layout')).toBeVisible();
+    await expect(page.getByTestId('scene-zone-storage')).toBeVisible();
+    await expect(page.getByTestId('scene-zone-storage')).toContainText(/Storage/i);
+    await expect(page.getByTestId('scene-zone-kitchen')).toBeVisible();
+    await expect(page.getByTestId('scene-zone-kitchen')).toContainText(/Kitchen Stations/i);
+    await expect(page.getByTestId('scene-zone-window')).toBeVisible();
+    await expect(page.getByTestId('scene-zone-window')).toContainText(/Service Window/i);
+    await expect(page.getByTestId('gameplay-guide')).toBeVisible();
+    await expect(page.getByTestId('gameplay-guide')).toContainText(/Start/i);
+    await expect(page.getByTestId('next-step-callout')).toBeVisible();
+    await expect(page.getByTestId('next-step-callout')).toContainText(/Next/i);
+    await expect(page.getByTestId('kitchen-worker')).toHaveAttribute('data-worker-zone', 'window');
+
+    await page.getByRole('button', { name: /^Fryer/i }).click();
+    await expect(page.getByTestId('kitchen-worker')).toHaveAttribute('data-worker-zone', 'fryer');
+    await expect(page.getByTestId('scene-station-fryer')).toContainText(/cooking/i);
+    await expect(page.getByTestId('prep-station-fryer')).toContainText(/fries/i);
+
+    await expect(page.getByRole('button', { name: /^Collect fries/i })).toBeVisible({ timeout: 4500 });
+    await expect(page.getByTestId('scene-station-fryer')).toContainText(/ready/i);
+  });
+
   test('AT-12 pause, resume, and reset are visible and usable without keyboard', async ({ page }) => {
     await page.setViewportSize({ width: 667, height: 375 });
     await startShift(page);

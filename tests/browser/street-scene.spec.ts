@@ -1,4 +1,6 @@
 import { expect, test } from '@playwright/test';
+import { mkdirSync } from 'node:fs';
+import { dirname } from 'node:path';
 import { inflateSync } from 'node:zlib';
 
 type PngPixels = {
@@ -129,12 +131,28 @@ function getPixelVariance(pixels: PngPixels) {
   };
 }
 
+async function waitForReferenceArt(page: import('@playwright/test').Page) {
+  await page.waitForFunction(() => {
+    const exterior = document.querySelector('[data-testid="reference-exterior-layer"]');
+    const service = document.querySelector('[data-testid="reference-service-layer"]');
+    return [exterior, service].every((element) => element instanceof HTMLImageElement && element.complete && element.naturalWidth > 1000);
+  });
+}
+
+async function captureArtifact(page: import('@playwright/test').Page, path: string) {
+  mkdirSync(dirname(path), { recursive: true });
+  await page.screenshot({ path, animations: 'disabled' });
+}
+
 test.describe('Phase 2 pre-shift street scene', () => {
   test('first load exposes a KFS street scene while keeping quick start available', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
+    await waitForReferenceArt(page);
 
     await expect(page.locator('canvas')).toBeVisible();
+    await expect(page.getByTestId('reference-scene')).toHaveAttribute('data-reference-mode', 'exterior-kiosk');
+    await expect(page.getByTestId('reference-exterior-layer')).toBeVisible();
     await expect(page.getByTestId('pre-shift-street')).toBeVisible();
     await expect(page.getByTestId('street-kiosk-anchor')).toContainText(/KFS kiosk/i);
     await expect(page.getByTestId('street-ambient-layer')).toContainText(/wet asphalt/i);
@@ -143,30 +161,43 @@ test.describe('Phase 2 pre-shift street scene', () => {
     await expect(page.getByRole('button', { name: 'Start Shift' })).toBeVisible();
   });
 
-  test('canvas renders a nonblank kiosk scene on desktop and phone landscape', async ({ page }) => {
+  test('reference-backed frame renders a nonblank kiosk scene on desktop and phone landscape', async ({ page }) => {
     for (const viewport of [
       { width: 1280, height: 720 },
       { width: 667, height: 375 },
     ]) {
       await page.setViewportSize(viewport);
       await page.goto('/');
-      const canvas = page.locator('canvas');
-      await expect(canvas).toBeVisible();
+      await waitForReferenceArt(page);
       await page.waitForTimeout(350);
 
-      const renderState = getPixelVariance(decodePngRgba(await canvas.screenshot()));
+      const renderState = getPixelVariance(decodePngRgba(await page.screenshot({ animations: 'disabled' })));
 
       expect(renderState.width).toBeGreaterThan(300);
       expect(renderState.height).toBeGreaterThan(200);
-      expect(renderState.distinctColorBuckets).toBeGreaterThan(8);
-      expect(renderState.lumaVariance).toBeGreaterThan(25);
-      expect(renderState.nonBackgroundRatio).toBeGreaterThan(0.04);
+      expect(renderState.distinctColorBuckets).toBeGreaterThan(18);
+      expect(renderState.lumaVariance).toBeGreaterThan(120);
+      expect(renderState.nonBackgroundRatio).toBeGreaterThan(0.28);
     }
+  });
+
+  test('captures visual acceptance artifacts for reference-backed pre-shift', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.goto('/');
+    await waitForReferenceArt(page);
+
+    await captureArtifact(page, '.runtime/qa-artifacts/kfs-street-scene-references/phase5/pre-shift-reference-desktop.png');
+
+    await page.setViewportSize({ width: 667, height: 375 });
+    await page.goto('/');
+    await waitForReferenceArt(page);
+    await captureArtifact(page, '.runtime/qa-artifacts/kfs-street-scene-references/phase5/pre-shift-reference-mobile.png');
   });
 
   test('pre-shift ambience changes while waiting without starting gameplay or penalties', async ({ page }) => {
     await page.setViewportSize({ width: 960, height: 540 });
     await page.goto('/');
+    await waitForReferenceArt(page);
 
     const ambience = page.getByTestId('street-ambient-layer');
     const firstPulse = await ambience.getAttribute('data-ambient-pulse');
@@ -189,6 +220,7 @@ test.describe('Phase 2 pre-shift street scene', () => {
   test('phone landscape menu keeps street identity visible behind the overlay', async ({ page }) => {
     await page.setViewportSize({ width: 667, height: 375 });
     await page.goto('/');
+    await waitForReferenceArt(page);
 
     await expect(page.getByTestId('orientation-gate')).toBeHidden();
     await expect(page.getByTestId('pre-shift-street')).toBeVisible();
@@ -200,12 +232,16 @@ test.describe('Phase 2 pre-shift street scene', () => {
   test('start shift exposes street-to-window encounter continuity while ambience remains active', async ({ page }) => {
     await page.setViewportSize({ width: 960, height: 540 });
     await page.goto('/');
+    await waitForReferenceArt(page);
 
     const ambience = page.getByTestId('street-ambient-layer');
     const firstPulse = await ambience.getAttribute('data-ambient-pulse');
 
     await page.getByRole('button', { name: 'Start Shift' }).click();
 
+    await expect(page.getByTestId('reference-scene')).toHaveAttribute('data-reference-mode', 'service-window');
+    await expect(page.getByTestId('reference-service-layer')).toBeVisible();
+    await expect(page.getByTestId('reference-active-visitor-layer')).toBeVisible();
     await expect(page.getByTestId('hud-topbar')).toBeVisible();
     await expect(page.getByTestId('active-encounter-flow')).toContainText(/pre-shift street/i);
     await expect(page.getByTestId('active-encounter-flow')).toContainText(/at window/i);
@@ -216,11 +252,14 @@ test.describe('Phase 2 pre-shift street scene', () => {
     await page.waitForTimeout(1200);
     const nextPulse = await page.getByTestId('active-street-ambience').getAttribute('data-ambient-pulse');
     expect(nextPulse).not.toBe(firstPulse);
+
+    await captureArtifact(page, '.runtime/qa-artifacts/kfs-street-scene-references/phase5/active-service-reference.png');
   });
 
   test('normal serve exposes departure and replacement flow without hiding controls', async ({ page }) => {
     await page.setViewportSize({ width: 960, height: 540 });
     await page.goto('/');
+    await waitForReferenceArt(page);
     await page.getByRole('button', { name: 'Start Shift' }).click();
 
     await page.getByRole('button', { name: /^Fryer/i }).click();

@@ -102,6 +102,10 @@ describe('game store core loop', () => {
     expect(state.score).toBe(0);
     expect(state.mistakes).toBe(0);
     expect(state.threat).toBe(0);
+    expect(state.actionCue).toMatchObject({
+      workerZone: 'window',
+      kind: 'pick',
+    });
   });
 
   it('keeps menu street observation non-punitive and exposes pre-shift street read', () => {
@@ -269,6 +273,33 @@ describe('game store core loop', () => {
     expect(state.threat).toBe(paused.threat);
     expect(state.holdProgress).toBe(paused.holdProgress);
     expect(state.stations.fryer.remaining).toBe(paused.stations.fryer.remaining);
+  });
+
+  it('moves the worker cue from station start to ready and collect feedback', () => {
+    setEncounter(normalCustomer);
+
+    useGameStore.getState().startCooking('fryer');
+    const started = useGameStore.getState();
+    expect(started.actionCue).toMatchObject({
+      workerZone: 'fryer',
+      kind: 'startCooking',
+    });
+
+    useGameStore.getState().tick(3);
+    const ready = useGameStore.getState();
+    expect(ready.stations.fryer.status).toBe('ready');
+    expect(ready.actionCue).toMatchObject({
+      workerZone: 'fryer',
+      kind: 'ready',
+    });
+
+    useGameStore.getState().collectStation('fryer');
+    const collected = useGameStore.getState();
+    expect(collected.preparedItems).toHaveLength(1);
+    expect(collected.actionCue).toMatchObject({
+      workerZone: 'fryer',
+      kind: 'pick',
+    });
   });
 
   it('does not allow paused tray collection to mutate the attempt', () => {

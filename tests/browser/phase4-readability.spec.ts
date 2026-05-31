@@ -43,11 +43,20 @@ async function captureArtifact(page: import('@playwright/test').Page, path: stri
   }
 }
 
+async function waitForReferenceArt(page: import('@playwright/test').Page) {
+  await page.waitForFunction(() => {
+    const images = Array.from(document.querySelectorAll('[data-testid="reference-exterior-layer"], [data-testid="reference-service-layer"]'));
+    return images.every((element) => element instanceof HTMLImageElement && element.complete && element.naturalWidth > 1000);
+  });
+}
+
 test.describe('Phase 4 visitor readability', () => {
   test('pre-shift exposes all ordinary archetypes and KFS worker identity', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
+    await waitForReferenceArt(page);
 
+    await expect(page.getByTestId('reference-scene')).toHaveAttribute('data-reference-mode', 'exterior-kiosk');
     await expect(page.getByTestId('pre-shift-street')).toBeVisible();
     await expect(page.getByTestId('worker-identity-context')).toContainText(/KFS worker/i);
     await expect(page.getByTestId('worker-identity-context')).toContainText(/badge/i);
@@ -65,6 +74,7 @@ test.describe('Phase 4 visitor readability', () => {
   test('phone landscape keeps archetype and worker identity readable before start', async ({ page }) => {
     await page.setViewportSize({ width: 667, height: 375 });
     await page.goto('/');
+    await waitForReferenceArt(page);
 
     await expect(page.getByTestId('orientation-gate')).toBeHidden();
     await expect(page.getByTestId('ordinary-archetype-matrix')).toBeVisible();
@@ -77,6 +87,7 @@ test.describe('Phase 4 visitor readability', () => {
   test('browser-visible active visitor samples cover normal and approved anomaly cues', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
+    await waitForReferenceArt(page);
 
     const samples = page.getByTestId('visitor-readability-samples');
     await expect(samples).toBeVisible();
@@ -107,6 +118,7 @@ test.describe('Phase 4 visitor readability', () => {
     test(`active current customer exposes readable ${cue.kind} state`, async ({ page }) => {
       await page.setViewportSize({ width: 1280, height: 720 });
       await page.goto('/?phase4-readability=1');
+      await waitForReferenceArt(page);
       await page.waitForFunction(() => typeof window.__kfsPhase4SetActiveCustomer === 'function');
 
       await page.evaluate((kind) => {
@@ -129,6 +141,8 @@ test.describe('Phase 4 visitor readability', () => {
       await expect(sceneCue).toBeVisible();
       await expect(sceneCue).toHaveAttribute('data-current-order-target', 'true');
       await expect(sceneCue).toHaveAttribute('data-anomaly-kind', cue.kind);
+      await expect(page.getByTestId('reference-scene')).toHaveAttribute('data-reference-mode', 'service-window');
+      await expect(page.getByTestId('reference-active-visitor-layer')).toBeVisible();
       await expect(page.getByTestId('serve-action')).toBeVisible();
       await expect(page.getByTestId('shutter-action')).toBeVisible();
 

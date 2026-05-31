@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState, type PointerEvent } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties, type PointerEvent } from 'react';
 import { setPhase4ReadabilityActiveCustomer, useGameStore } from '../app/store';
 import type { BurgerIngredient, DrinkFlavor, StationId } from '../features/cooking/types';
 import { PROTECTION_HOLD_SECONDS } from '../features/difficulty/config';
 import type { AnomalyKind, Customer } from '../features/customers/types';
 import { summarizePrepared } from '../features/orders/types';
+import { getAudioEnabled, installAudioUnlock, playGameSound, setAudioEnabled, type GameSound } from '../shared/audio';
 import { formatTime } from '../shared/format';
 import { getSceneVisualState, type StreetPedestrianVisualState } from '../shared/sceneVisualState';
 
@@ -23,6 +24,13 @@ function stationButtonLabel(stationId: StationId, product?: 'nuggets' | 'strips'
   if (stationId === 'grill') return 'Grill Burger';
   if (stationId === 'drink') return 'Drink';
   return 'Fryer';
+}
+
+function stationForOrderLine(kind: string): StationId {
+  if (kind === 'fries') return 'fryer';
+  if (kind === 'burger') return 'grill';
+  if (kind === 'drink') return 'drink';
+  return 'oven';
 }
 
 const archetypeLabels: Record<StreetPedestrianVisualState['archetype'], string> = {
@@ -244,6 +252,7 @@ function Overlay() {
   const mistakes = useGameStore((state) => state.mistakes);
   const gameOverReason = useGameStore((state) => state.gameOverReason);
   const [menuTab, setMenuTab] = useState<'start' | 'how' | 'settings'>('start');
+  const [audioEnabled, setAudioEnabledState] = useState(() => getAudioEnabled());
 
   if (phase === 'playing') return null;
 
@@ -302,7 +311,17 @@ function Overlay() {
             {menuTab === 'settings' && (
               <div className="settings-list">
                 <label>
-                  <input type="checkbox" defaultChecked /> Audio cues placeholder
+                  <input
+                    type="checkbox"
+                    data-testid="audio-toggle"
+                    checked={audioEnabled}
+                    onChange={(event) => {
+                      const enabled = event.currentTarget.checked;
+                      setAudioEnabledState(enabled);
+                      setAudioEnabled(enabled);
+                    }}
+                  />{' '}
+                  Audio cues
                 </label>
                 <label>
                   <input type="checkbox" defaultChecked /> Reference quality
@@ -461,6 +480,7 @@ export function Hud() {
   const selectedBurgerIngredients = useGameStore((state) => state.burgerIngredients);
   const stations = useGameStore((state) => state.stations);
   const message = useGameStore((state) => state.message);
+  const actionCue = useGameStore((state) => state.actionCue);
   const level = useGameStore((state) => state.level);
   const selectDrink = useGameStore((state) => state.selectDrink);
   const toggleBurgerIngredient = useGameStore((state) => state.toggleBurgerIngredient);
@@ -475,6 +495,63 @@ export function Hud() {
   const prepared = summarizePrepared(preparedItems);
   const [expandedOrderPinned, setExpandedOrderPinned] = useState(false);
   const holdPercent = Math.round((holdProgress / PROTECTION_HOLD_SECONDS) * 100);
+  const gameplayGuide = useMemo(() => {
+    const readyStation = stationIds.find((stationId) => stations[stationId].status === 'ready');
+    if (readyStation) {
+      return {
+        zone: readyStation,
+        label: `Collect ${stations[readyStation].product} from ${stations[readyStation].label}`,
+      };
+    }
+
+    if (currentCustomer?.anomaly) {
+      return {
+        zone: 'shutter',
+        label: 'Anomaly cue: hold the shutter instead of serving',
+      };
+    }
+
+    const cookingStation = stationIds.find((stationId) => stations[stationId].status === 'cooking');
+    if (cookingStation) {
+      return {
+        zone: cookingStation,
+        label: `Cooking ${stations[cookingStation].product} at ${stations[cookingStation].label}`,
+      };
+    }
+
+    const nextLine = currentOrder?.lines.find((line) => {
+      const currentCount = line.kind === 'burger' ? prepared.burger : prepared[line.kind];
+      return currentCount < line.count;
+    });
+    if (nextLine) {
+      const stationId = stationForOrderLine(nextLine.kind);
+      return {
+        zone: stationId,
+        label: `Start ${nextLine.kind} at ${stations[stationId].label}`,
+      };
+    }
+
+    if (currentOrder?.drink && prepared.drink !== currentOrder.drink) {
+      return {
+        zone: 'drink',
+        label: `Fill ${currentOrder.drink} at Dispenser`,
+      };
+    }
+
+    return {
+      zone: 'window',
+      label: preparedItems.length > 0 ? 'Serve the tray at the window' : 'Read the order at the window',
+    };
+  }, [currentCustomer?.anomaly, currentOrder, prepared, preparedItems.length, stations]);
+
+  useEffect(() => {
+    installAudioUnlock();
+  }, []);
+
+  useEffect(() => {
+    if (actionCue.sequence <= 0 || actionCue.kind === 'idle') return;
+    playGameSound(actionCue.kind as GameSound);
+  }, [actionCue.kind, actionCue.sequence]);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -552,6 +629,10 @@ export function Hud() {
       <PreShiftStreetStatus />
       <div className="play-hud" aria-hidden={phase !== 'playing'}>
       <ActiveSceneReadabilityLayer customer={currentCustomer} />
+      <div className={`gameplay-guide guide-${gameplayGuide.zone}`} data-testid="gameplay-guide">
+        <strong>Next step</strong>
+        <span>{gameplayGuide.label}</span>
+      </div>
       <div className="topbar" data-testid="hud-topbar">
         <div>
           <span>Score</span>
@@ -630,7 +711,10 @@ export function Hud() {
             <span>Shadow eyes, long arms, or a fixed glowing smile means hold the shutter instead of serving.</span>
           </div>
         )}
-        <div className="message">{message}</div>
+        <div className={`message message-${actionCue.kind}`}>
+          <strong>{message}</strong>
+          <span>{actionCue.label}</span>
+        </div>
       </aside>
 
       <aside className="panel right-panel station-board-panel" data-testid="prep-panel">
@@ -677,8 +761,19 @@ export function Hud() {
         <div className="station-list">
           {stationIds.map((id) => {
             const station = stations[id];
+            const progress =
+              station.status === 'cooking' && station.duration > 0
+                ? Math.max(0, Math.min(100, ((station.duration - station.remaining) / station.duration) * 100))
+                : station.status === 'ready'
+                  ? 100
+                  : 0;
             return (
-              <div key={id} className="station-row">
+              <div
+                key={id}
+                className={`station-row station-feedback station-${station.status} ${gameplayGuide.zone === id ? 'next-step' : ''}`}
+                style={{ '--station-progress': `${progress}%` } as CSSProperties & Record<'--station-progress', string>}
+                data-testid={`prep-station-${id}`}
+              >
                 <span>{station.label}</span>
                 <strong>
                   {station.status === 'cooking'
@@ -687,6 +782,7 @@ export function Hud() {
                       ? `${station.product} ready`
                       : 'idle'}
                 </strong>
+                <i aria-hidden="true" />
               </div>
             );
           })}
@@ -694,22 +790,48 @@ export function Hud() {
       </aside>
 
       <div className="action-dock" data-testid="action-dock">
-        <button type="button" onClick={() => runStation('fryer')} disabled={phase !== 'playing' || stations.fryer.status === 'cooking'}>
+        <button
+          type="button"
+          className={gameplayGuide.zone === 'fryer' ? 'next-step' : undefined}
+          onClick={() => runStation('fryer')}
+          disabled={phase !== 'playing' || stations.fryer.status === 'cooking'}
+        >
           {stationButtonLabel('fryer')}
         </button>
-        <button type="button" onClick={() => runStation('grill')} disabled={phase !== 'playing' || stations.grill.status === 'cooking'}>
+        <button
+          type="button"
+          className={gameplayGuide.zone === 'grill' ? 'next-step' : undefined}
+          onClick={() => runStation('grill')}
+          disabled={phase !== 'playing' || stations.grill.status === 'cooking'}
+        >
           {stationButtonLabel('grill')}
         </button>
-        <button type="button" onClick={() => runStation('oven', 'nuggets')} disabled={phase !== 'playing' || stations.oven.status === 'cooking'}>
+        <button
+          type="button"
+          className={gameplayGuide.zone === 'oven' ? 'next-step' : undefined}
+          onClick={() => runStation('oven', 'nuggets')}
+          disabled={phase !== 'playing' || stations.oven.status === 'cooking'}
+        >
           {stationButtonLabel('oven', 'nuggets')}
         </button>
         <button type="button" onClick={() => runStation('oven', 'strips')} disabled={phase !== 'playing' || stations.oven.status === 'cooking'}>
           {stationButtonLabel('oven', 'strips')}
         </button>
-        <button type="button" onClick={() => runStation('drink')} disabled={phase !== 'playing' || stations.drink.status === 'cooking'}>
+        <button
+          type="button"
+          className={gameplayGuide.zone === 'drink' ? 'next-step' : undefined}
+          onClick={() => runStation('drink')}
+          disabled={phase !== 'playing' || stations.drink.status === 'cooking'}
+        >
           {stationButtonLabel('drink')}
         </button>
-        <button type="button" className="serve-button" data-testid="serve-action" onClick={serveCustomer} disabled={phase !== 'playing'}>
+        <button
+          type="button"
+          className={`serve-button ${gameplayGuide.zone === 'window' ? 'next-step' : ''}`}
+          data-testid="serve-action"
+          onClick={serveCustomer}
+          disabled={phase !== 'playing'}
+        >
           Serve
         </button>
         <button type="button" className="secondary" onClick={quickInteract} disabled={phase !== 'playing'}>
@@ -721,7 +843,7 @@ export function Hud() {
         <div className="shutter-control">
           <button
             type="button"
-            className="hold-button"
+            className={`hold-button ${gameplayGuide.zone === 'shutter' ? 'next-step' : ''}`}
             data-testid="shutter-action"
             onPointerDown={holdStart}
             onPointerUp={holdEnd}

@@ -23,6 +23,15 @@ import type { Order } from '../features/orders/types';
 import { getStreetVisualState, type StreetVisualState } from '../shared/sceneVisualState';
 
 export type GamePhase = 'menu' | 'playing' | 'paused' | 'victory' | 'gameOver';
+export type WorkerZone = 'storage' | 'fryer' | 'grill' | 'oven' | 'drink' | 'window' | 'shutter';
+export type ActionCueKind = 'idle' | 'pick' | 'startCooking' | 'ready' | 'serve' | 'error' | 'warning';
+
+export type ActionCue = {
+  workerZone: WorkerZone;
+  kind: ActionCueKind;
+  label: string;
+  sequence: number;
+};
 
 export type EncounterDeparture = {
   customerId: string;
@@ -62,6 +71,7 @@ type GameState = {
   level: number;
   preShiftStreet: StreetVisualState;
   encounterFlow: EncounterFlowState;
+  actionCue: ActionCue;
   startShift: () => void;
   pause: () => void;
   resume: () => void;
@@ -107,7 +117,20 @@ const initialState = {
     activeSource: null,
     lastDeparture: null,
   },
+  actionCue: {
+    workerZone: 'storage' as WorkerZone,
+    kind: 'idle' as ActionCueKind,
+    label: 'Clock in and open the window.',
+    sequence: 0,
+  },
 };
+
+function nextActionCue(state: Pick<GameState, 'actionCue'>, patch: Omit<ActionCue, 'sequence'>): ActionCue {
+  return {
+    ...patch,
+    sequence: state.actionCue.sequence + 1,
+  };
+}
 
 function terminalEncounterCleanup(): Partial<GameState> {
   return {
@@ -248,6 +271,11 @@ export const useGameStore = create<GameState>((set, get) => ({
       phase: 'playing',
       customerSequence: 1,
       message: 'First visitor steps from the pre-shift street to the service window.',
+      actionCue: nextActionCue(initialState, {
+        workerZone: 'window',
+        kind: 'pick',
+        label: 'Read the first order at the service window.',
+      }),
       ...nextCustomer(1, SHIFT_SECONDS, 'preShiftStreet', 'atWindow'),
     })),
 
@@ -259,20 +287,22 @@ export const useGameStore = create<GameState>((set, get) => ({
     const state = get();
     if (state.phase !== 'playing') return;
 
-    const stations = Object.fromEntries(
-      Object.entries(state.stations).map(([id, station]) => {
-        if (station.status !== 'cooking') return [id, station];
+    const stations = {} as Record<StationId, CookingStation>;
+    let readyStationCue: { id: StationId; label: string } | null = null;
+
+    for (const [id, station] of Object.entries(state.stations) as [StationId, CookingStation][]) {
+      if (station.status === 'cooking') {
         const remaining = Math.max(0, station.remaining - delta);
-        return [
-          id,
-          {
-            ...station,
-            remaining,
-            status: remaining <= 0 ? 'ready' : 'cooking',
-          },
-        ];
-      }),
-    ) as Record<StationId, CookingStation>;
+        if (remaining <= 0 && !readyStationCue) readyStationCue = { id, label: station.label };
+        stations[id] = {
+          ...station,
+          remaining,
+          status: remaining <= 0 ? 'ready' : 'cooking',
+        };
+      } else {
+        stations[id] = station;
+      }
+    }
 
     let shiftTimer = Math.max(0, state.shiftTimer - delta);
     let customerTimer = Math.max(0, state.customerTimer - delta);
@@ -289,6 +319,13 @@ export const useGameStore = create<GameState>((set, get) => ({
     let score = state.score;
     let customerSequence = state.customerSequence;
     let customerPatch: Partial<GameState> = {};
+    let actionCue = readyStationCue
+      ? nextActionCue(state, {
+          workerZone: readyStationCue.id,
+          kind: 'ready',
+          label: `${readyStationCue.label} is ready to collect.`,
+        })
+      : state.actionCue;
 
     if (shutterTimer <= 0) shutterClosed = false;
 
@@ -301,10 +338,20 @@ export const useGameStore = create<GameState>((set, get) => ({
         repelled += 1;
         score += 150;
         message = 'Anomaly repelled. +150 score.';
+        actionCue = nextActionCue(state, {
+          workerZone: 'shutter',
+          kind: 'serve',
+          label: 'Shutter held. Threat repelled.',
+        });
       } else {
         mistakes += 1;
         score = Math.max(0, score - 50);
         message = 'False alarm: normal customer scared away. -50 score.';
+        actionCue = nextActionCue(state, {
+          workerZone: 'shutter',
+          kind: 'error',
+          label: 'False shutter alarm.',
+        });
       }
 
       customerSequence += 1;
@@ -319,10 +366,20 @@ export const useGameStore = create<GameState>((set, get) => ({
       if (state.currentCustomer.anomaly) {
         threat = Math.min(MAX_THREAT, threat + 22);
         message = 'The anomaly lingered too long.';
+        actionCue = nextActionCue(state, {
+          workerZone: 'window',
+          kind: 'warning',
+          label: 'Anomaly stayed too long.',
+        });
       } else {
         mistakes += 1;
         score = Math.max(0, score - 75);
         message = 'Customer left without food. -75 score.';
+        actionCue = nextActionCue(state, {
+          workerZone: 'window',
+          kind: 'error',
+          label: 'Customer left hungry.',
+        });
       }
 
       customerSequence += 1;
@@ -339,6 +396,11 @@ export const useGameStore = create<GameState>((set, get) => ({
       phase = 'victory';
       message = 'Shift complete.';
       shiftTimer = 0;
+      actionCue = nextActionCue(state, {
+        workerZone: 'window',
+        kind: 'serve',
+        label: 'Shift complete.',
+      });
       customerPatch = terminalEncounterCleanup();
     }
 
@@ -346,6 +408,11 @@ export const useGameStore = create<GameState>((set, get) => ({
     if (phase === 'gameOver') {
       customerTimer = 0;
       holdProgress = 0;
+      actionCue = nextActionCue(state, {
+        workerZone: 'window',
+        kind: 'error',
+        label: 'Shift failed.',
+      });
       customerPatch = terminalEncounterCleanup();
     }
 
@@ -364,6 +431,7 @@ export const useGameStore = create<GameState>((set, get) => ({
       score,
       customerSequence,
       gameOverReason: phase === 'gameOver' ? getGameOverReason(mistakes, threat) : state.gameOverReason,
+      actionCue,
       ...customerPatch,
     });
   },
@@ -372,7 +440,15 @@ export const useGameStore = create<GameState>((set, get) => ({
     set((state) => {
       if (state.phase !== 'playing') return {};
       const station = state.stations[stationId];
-      if (station.status !== 'idle') return {};
+      if (station.status !== 'idle') {
+        return {
+          actionCue: nextActionCue(state, {
+            workerZone: stationId,
+            kind: 'warning',
+            label: `${station.label} is already ${station.status}.`,
+          }),
+        };
+      }
       const details = stationProduct(stationId, state.selectedDrink, state.burgerIngredients, productOverride);
       const duration = COOKING_DURATIONS[details.product];
 
@@ -388,6 +464,11 @@ export const useGameStore = create<GameState>((set, get) => ({
           },
         },
         message: `${station.label} started.`,
+        actionCue: nextActionCue(state, {
+          workerZone: stationId,
+          kind: 'startCooking',
+          label: `${station.label} started ${details.product}.`,
+        }),
       };
     }),
 
@@ -395,7 +476,15 @@ export const useGameStore = create<GameState>((set, get) => ({
     set((state) => {
       if (state.phase !== 'playing') return {};
       const station = state.stations[stationId];
-      if (station.status !== 'ready') return {};
+      if (station.status !== 'ready') {
+        return {
+          actionCue: nextActionCue(state, {
+            workerZone: stationId,
+            kind: 'warning',
+            label: `${station.label} is not ready yet.`,
+          }),
+        };
+      }
       const item = itemFromStation(station);
 
       return {
@@ -412,22 +501,64 @@ export const useGameStore = create<GameState>((set, get) => ({
           },
         },
         message: item ? 'Item added to tray.' : state.message,
+        actionCue: nextActionCue(state, {
+          workerZone: stationId,
+          kind: 'pick',
+          label: item ? `${station.label} item moved to tray.` : `${station.label} cleared.`,
+        }),
       };
     }),
 
   clearPrepared: () =>
-    set((state) => (state.phase === 'playing' ? { preparedItems: [], message: 'Tray cleared.' } : {})),
-  selectDrink: (selectedDrink) => set((state) => (state.phase === 'playing' ? { selectedDrink } : {})),
+    set((state) =>
+      state.phase === 'playing'
+        ? {
+            preparedItems: [],
+            message: 'Tray cleared.',
+            actionCue: nextActionCue(state, {
+              workerZone: 'storage',
+              kind: 'pick',
+              label: 'Tray cleared at storage.',
+            }),
+          }
+        : {},
+    ),
+  selectDrink: (selectedDrink) =>
+    set((state) =>
+      state.phase === 'playing'
+        ? {
+            selectedDrink,
+            actionCue: nextActionCue(state, {
+              workerZone: 'drink',
+              kind: 'pick',
+              label: `${selectedDrink} selected.`,
+            }),
+          }
+        : {},
+    ),
   toggleBurgerIngredient: (ingredient) =>
     set((state) => {
       if (state.phase !== 'playing') return {};
       const locked = (ingredient === 'bun' || ingredient === 'patty') && state.burgerIngredients.includes(ingredient);
-      if (locked) return {};
+      if (locked) {
+        return {
+          actionCue: nextActionCue(state, {
+            workerZone: 'storage',
+            kind: 'warning',
+            label: `${ingredient} stays on the burger.`,
+          }),
+        };
+      }
 
       return {
         burgerIngredients: state.burgerIngredients.includes(ingredient)
           ? state.burgerIngredients.filter((item) => item !== ingredient)
           : [...state.burgerIngredients, ingredient],
+        actionCue: nextActionCue(state, {
+          workerZone: 'storage',
+          kind: 'pick',
+          label: `${ingredient} toggled.`,
+        }),
       };
     }),
 
@@ -450,6 +581,11 @@ export const useGameStore = create<GameState>((set, get) => ({
           gameOverReason: phase === 'gameOver' ? getGameOverReason(mistakes, threat) : state.gameOverReason,
           message: phase === 'gameOver' ? 'You served an anomaly. The threat took over.' : 'Never serve an anomaly. -50 score.',
           preparedItems: [],
+          actionCue: nextActionCue(state, {
+            workerZone: 'window',
+            kind: 'error',
+            label: 'Wrong target served.',
+          }),
           ...(phase === 'playing'
             ? nextCustomer(customerSequence, state.shiftTimer, 'streetQueue', 'approaching', departureFor(state.currentCustomer, 'replaced'))
             : terminalEncounterCleanup()),
@@ -467,6 +603,11 @@ export const useGameStore = create<GameState>((set, get) => ({
           phase,
           gameOverReason: phase === 'gameOver' ? getGameOverReason(mistakes, state.threat) : state.gameOverReason,
           message: `${result.reason} -50 score.`,
+          actionCue: nextActionCue(state, {
+            workerZone: 'window',
+            kind: 'error',
+            label: result.reason,
+          }),
           ...(phase === 'gameOver' ? terminalEncounterCleanup() : { preparedItems: [] }),
         };
       }
@@ -478,12 +619,29 @@ export const useGameStore = create<GameState>((set, get) => ({
         score: state.score + 100 + fastBonus,
         customerSequence,
         message: fastBonus ? 'Correct order. Fast bonus +25.' : 'Correct order. +100 score.',
+        actionCue: nextActionCue(state, {
+          workerZone: 'window',
+          kind: 'serve',
+          label: fastBonus ? 'Served fast at the window.' : 'Served at the window.',
+        }),
         ...nextCustomer(customerSequence, state.shiftTimer, 'streetQueue', 'approaching', departureFor(state.currentCustomer, 'servedLeaving')),
       };
     }),
 
   beginProtection: () =>
-    set((state) => (state.phase === 'playing' ? { protectionHeld: true, message: 'Shutter charging.' } : {})),
+    set((state) =>
+      state.phase === 'playing'
+        ? {
+            protectionHeld: true,
+            message: 'Shutter charging.',
+            actionCue: nextActionCue(state, {
+              workerZone: 'shutter',
+              kind: 'warning',
+              label: 'Holding shutter at service window.',
+            }),
+          }
+        : {},
+    ),
   endProtection: () =>
     set((state) => (state.phase === 'playing' ? { protectionHeld: false, holdProgress: 0 } : {})),
 }));
@@ -535,5 +693,10 @@ export function setPhase4ReadabilityActiveCustomer(kind: AnomalyKind) {
     gameOverReason: null,
     level: difficulty.level,
     encounterFlow: encounterFlowFor(customer, null),
+    actionCue: nextActionCue(useGameStore.getState(), {
+      workerZone: 'window',
+      kind: 'pick',
+      label: `Phase 4 ${kind} customer at window.`,
+    }),
   });
 }
