@@ -10,6 +10,28 @@ import type {
 
 export type ThreatCue = Exclude<AnomalyKind, 'normal'> | 'none';
 export type ProtectionStatus = 'idle' | 'charging' | 'closed';
+export type SceneEncounterOutcome =
+  | 'none'
+  | 'shutterCharging'
+  | 'shutterRepel'
+  | 'shutterFalseAlarm'
+  | 'anomalyTimeout'
+  | 'serveAnomaly';
+export type SceneWindowPressureStatus =
+  | 'ordinary'
+  | 'anomaly'
+  | 'charging'
+  | 'closed'
+  | 'repelled'
+  | 'falseAlarm'
+  | 'late'
+  | 'servedAnomaly';
+export type SceneWindowPressureVisualState = {
+  visible: boolean;
+  anomalyVisible: boolean;
+  status: SceneWindowPressureStatus;
+  tone: 'neutral' | 'success' | 'warning' | 'error' | 'threat';
+};
 export type StreetAmbienceDescriptor =
   | 'wetAsphalt'
   | 'kioskSignGlow'
@@ -79,6 +101,7 @@ export type SceneVisualStateInput = {
   holdProgress: number;
   phase?: 'menu' | 'playing' | 'paused' | 'victory' | 'gameOver';
   customerStreet?: CustomerStreetPresence | null;
+  encounterOutcome?: SceneEncounterOutcome;
 };
 
 const cueColors = {
@@ -216,7 +239,53 @@ export function getStreetVisualState({
   };
 }
 
-export function getSceneVisualState({ anomalyKind, shutterClosed, holdProgress, customerStreet }: SceneVisualStateInput) {
+function windowPressureFor({
+  anomaly,
+  shutterClosed,
+  charging,
+  phase,
+  encounterOutcome = 'none',
+}: {
+  anomaly: boolean;
+  shutterClosed: boolean;
+  charging: boolean;
+  phase: SceneVisualStateInput['phase'];
+  encounterOutcome?: SceneEncounterOutcome;
+}): SceneWindowPressureVisualState {
+  if (encounterOutcome === 'shutterRepel') {
+    return { visible: true, anomalyVisible: true, status: 'repelled', tone: 'success' };
+  }
+  if (encounterOutcome === 'shutterFalseAlarm') {
+    return { visible: true, anomalyVisible: false, status: 'falseAlarm', tone: 'error' };
+  }
+  if (encounterOutcome === 'anomalyTimeout') {
+    return { visible: true, anomalyVisible: true, status: 'late', tone: 'threat' };
+  }
+  if (encounterOutcome === 'serveAnomaly') {
+    return { visible: true, anomalyVisible: true, status: 'servedAnomaly', tone: 'threat' };
+  }
+  if (encounterOutcome === 'shutterCharging' || charging) {
+    return { visible: true, anomalyVisible: anomaly, status: 'charging', tone: anomaly ? 'threat' : 'warning' };
+  }
+  if (shutterClosed) {
+    return { visible: true, anomalyVisible: anomaly, status: 'closed', tone: anomaly ? 'success' : 'warning' };
+  }
+  return {
+    visible: phase === 'playing' || anomaly,
+    anomalyVisible: anomaly,
+    status: anomaly ? 'anomaly' : 'ordinary',
+    tone: anomaly ? 'threat' : 'neutral',
+  };
+}
+
+export function getSceneVisualState({
+  anomalyKind,
+  shutterClosed,
+  holdProgress,
+  phase,
+  customerStreet,
+  encounterOutcome,
+}: SceneVisualStateInput) {
   const threatCue: ThreatCue = anomalyKind === 'normal' ? 'none' : anomalyKind;
   const anomaly = threatCue !== 'none';
   const charging = holdProgress > 0 && holdProgress < PROTECTION_HOLD_SECONDS;
@@ -229,6 +298,7 @@ export function getSceneVisualState({ anomalyKind, shutterClosed, holdProgress, 
     customerVisible: !shutterClosed,
     safeFromAnomaly: shutterClosed,
     protectionStatus: shutterClosed ? ('closed' as const) : charging ? ('charging' as const) : ('idle' as const),
+    windowPressure: windowPressureFor({ anomaly, shutterClosed, charging, phase, encounterOutcome }),
     customer: {
       bodyColor: anomaly ? '#34382c' : '#2f3a2d',
       headColor: anomaly ? '#c7ad94' : '#d2ad8b',

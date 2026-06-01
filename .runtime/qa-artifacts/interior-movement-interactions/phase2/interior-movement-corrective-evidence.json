@@ -1,0 +1,32 @@
+{
+  "baseUrl": "http://127.0.0.1:4173",
+  "checks": {
+    "visibleWorkerAvatarBox": true,
+    "visibleInteriorAnchors": true,
+    "progressInterpolatesBeforeArrival": true,
+    "pathVisibleOnlyWhileMoving": true,
+    "phoneLandscapeNoHudDockOverlap": true
+  },
+  "artifacts": {
+    "desktop": ".runtime/qa-artifacts/interior-movement-interactions/phase2/interior-movement-desktop-corrective.png",
+    "phoneLandscape": ".runtime/qa-artifacts/interior-movement-interactions/phase2/interior-movement-phone-landscape-corrective.png"
+  },
+  "pixelStats": {
+    "desktop": {
+      "width": 1280,
+      "height": 720,
+      "samples": 40070,
+      "min": 0,
+      "max": 255,
+      "variance": 1365.2680435118252
+    },
+    "phoneLandscape": {
+      "width": 667,
+      "height": 375,
+      "samples": 41688,
+      "min": 0,
+      "max": 255,
+      "variance": 1811.5906024819956
+    }
+  }
+}

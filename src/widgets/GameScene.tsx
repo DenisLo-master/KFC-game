@@ -2,6 +2,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import type { Group } from 'three';
 import { useGameStore } from '../app/store';
+import { usePrefersReducedMotion } from '../shared/usePrefersReducedMotion';
 
 function Loop() {
   const tick = useGameStore((state) => state.tick);
@@ -141,6 +142,8 @@ function InteractionLayer() {
 }
 
 export function GameScene() {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
     <Canvas
       className="interaction-canvas"
@@ -149,7 +152,7 @@ export function GameScene() {
       onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
     >
       <Loop />
-      <RainAndSteam />
+      {!prefersReducedMotion && <RainAndSteam />}
       <InteractionLayer />
     </Canvas>
   );

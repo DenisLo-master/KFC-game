@@ -282,4 +282,49 @@ describe('scene visual state contract', () => {
     expect(state.protectionStatus).toBe('charging');
     expect(state.safeFromAnomaly).toBe(false);
   });
+
+  it('keeps anomaly pressure, shutter charging, repel, and late-reaction states visually distinct', () => {
+    const charging = getSceneVisualState({
+      anomalyKind: 'longArms',
+      shutterClosed: false,
+      holdProgress: PROTECTION_HOLD_SECONDS / 2,
+      phase: 'playing',
+      encounterOutcome: 'shutterCharging',
+    });
+    const repelled = getSceneVisualState({
+      anomalyKind: 'longArms',
+      shutterClosed: true,
+      holdProgress: 0,
+      phase: 'playing',
+      encounterOutcome: 'shutterRepel',
+    });
+    const late = getSceneVisualState({
+      anomalyKind: 'longArms',
+      shutterClosed: false,
+      holdProgress: 0,
+      phase: 'playing',
+      encounterOutcome: 'anomalyTimeout',
+    });
+
+    expect(charging.windowPressure).toMatchObject({
+      visible: true,
+      anomalyVisible: true,
+      status: 'charging',
+      tone: 'threat',
+    });
+    expect(repelled.windowPressure).toMatchObject({
+      visible: true,
+      anomalyVisible: true,
+      status: 'repelled',
+      tone: 'success',
+    });
+    expect(late.windowPressure).toMatchObject({
+      visible: true,
+      anomalyVisible: true,
+      status: 'late',
+      tone: 'threat',
+    });
+    expect(charging.windowPressure.status).not.toBe(repelled.windowPressure.status);
+    expect(late.windowPressure.status).not.toBe('servedAnomaly');
+  });
 });
