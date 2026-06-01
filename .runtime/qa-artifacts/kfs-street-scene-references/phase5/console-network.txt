@@ -1,0 +1,44 @@
+[
+  {
+    "name": "desktop",
+    "width": 960,
+    "height": 540,
+    "initial": {
+      "hasStorage": true,
+      "hasKitchen": true,
+      "hasWindow": true,
+      "nextStep": "Next stepStart fries at Fryer",
+      "workerZone": "window"
+    },
+    "final": {
+      "workerZone": "fryer",
+      "stationText": "Fryerfries ready",
+      "prepText": "Fryerfries ready",
+      "guideText": "Next stepCollect fries from Fryer",
+      "pageScroll": false
+    },
+    "consoleErrors": [],
+    "requestFailures": []
+  },
+  {
+    "name": "mobile-landscape",
+    "width": 667,
+    "height": 375,
+    "initial": {
+      "hasStorage": false,
+      "hasKitchen": true,
+      "hasWindow": false,
+      "nextStep": "Next stepStart fries at Fryer",
+      "workerZone": "window"
+    },
+    "final": {
+      "workerZone": "fryer",
+      "stationText": "Fryerfries ready",
+      "prepText": "Fryerfries ready",
+      "guideText": "Next stepCollect fries from Fryer",
+      "pageScroll": false
+    },
+    "consoleErrors": [],
+    "requestFailures": []
+  }
+]

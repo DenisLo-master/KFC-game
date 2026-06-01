@@ -1,0 +1,7 @@
+console warnings/errors: 4
+[warning] [.WebGL-0x4c00169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[warning] [.WebGL-0x4c0016a800]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[warning] [.WebGL-0x4c00169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[warning] [.WebGL-0x4c00169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+request failures: none
+performance sanity: {"frames":90,"avgFrameMs":16.53,"p95FrameMs":16.7,"maxFrameMs":16.8,"longFramesOver50ms":0}

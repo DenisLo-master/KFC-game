@@ -1,0 +1,281 @@
+{
+  "status": "pass",
+  "target_url": "http://127.0.0.1:5174/",
+  "artifact_dir": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3",
+  "viewports": [
+    "desktop 1366x768",
+    "phone landscape 667x375",
+    "tablet landscape 1024x768",
+    "portrait 390x844"
+  ],
+  "final_screenshots": [
+    "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-pre-shift.png",
+    "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-active-first-encounter.png",
+    "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-normal-serve-replacement.png",
+    "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-anomaly-shutter-repelled.png",
+    "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/phone-landscape-active.png",
+    "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/tablet-landscape-active.png",
+    "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/portrait-gate.png"
+  ],
+  "state_screenshots": [
+    {
+      "state": "pre-shift street",
+      "viewport": "desktop",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-pre-shift.png"
+    },
+    {
+      "state": "first active encounter",
+      "viewport": "desktop",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-active-first-encounter.png"
+    },
+    {
+      "state": "normal serve replacement",
+      "viewport": "desktop",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-normal-serve-replacement.png"
+    },
+    {
+      "state": "anomaly shutter repel",
+      "viewport": "desktop",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/desktop-anomaly-shutter-repelled.png"
+    },
+    {
+      "state": "active service",
+      "viewport": "phone landscape",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/phone-landscape-active.png"
+    },
+    {
+      "state": "active service",
+      "viewport": "tablet landscape",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/tablet-landscape-active.png"
+    },
+    {
+      "state": "portrait rotate gate",
+      "viewport": "portrait",
+      "path": "/workspace/KFC-game/.runtime/qa-artifacts/kfs-street-scene-references/phase3/portrait-gate.png"
+    }
+  ],
+  "checks": [
+    {
+      "name": "first encounter continuity",
+      "text": "pre-shift street / at window",
+      "pass": true
+    },
+    {
+      "name": "ambient pulse continues after start",
+      "prePulse": "0",
+      "activePulse": "1",
+      "pass": true
+    },
+    {
+      "name": "normal serve departure/replacement marker",
+      "text": "street queue / approaching / served leaving / replacement approaching",
+      "pass": true
+    },
+    {
+      "name": "anomaly shutter repel departure/replacement marker",
+      "status": "pass",
+      "beforeShutterText": "street queue / approaching / served leaving / replacement approaching",
+      "afterShutterText": "street queue / approaching / repelled leaving / replacement approaching",
+      "pass": true
+    },
+    {
+      "name": "phone-landscape-active.png",
+      "inspection": {
+        "boxes": {
+          "hud-topbar": {
+            "x": 6,
+            "y": 6,
+            "width": 655,
+            "height": 58,
+            "text": "Score0Shift90Customer24Mistakes0/3Threat0%PauseReset"
+          },
+          "order-panel": {
+            "x": 10,
+            "y": 64,
+            "width": 210,
+            "height": 229,
+            "text": "OrderTabLv 1Avaat windowpre-shift street / at windowstreet ambience steam1 x friesno drinkEsc pauseE quickTab detailsFirst visitor steps from the pre-shift street to the service window."
+          },
+          "prep-panel": {
+            "x": 447,
+            "y": 64,
+            "width": 210,
+            "height": 229,
+            "text": "PrepFries0Burgers0Nuggets0Strips0Drink-bunpattylettucetomatosaucelemonadesodasmoothiejuiceFryeridleGrillidleOvenidleDispenseridle"
+          },
+          "action-dock": {
+            "x": 6,
+            "y": 300,
+            "width": 655,
+            "height": 69,
+            "text": "FryerGrill BurgerOven nuggetsOven stripsDrinkServeQuickClearHold Shutter"
+          },
+          "active-encounter-flow": {
+            "x": 20,
+            "y": 136,
+            "width": 173,
+            "height": 36,
+            "text": "pre-shift street / at window"
+          },
+          "active-street-ambience": {
+            "x": 20,
+            "y": 154,
+            "width": 144,
+            "height": 36,
+            "text": "street ambience steam"
+          }
+        },
+        "overflow": {
+          "horizontal": false,
+          "vertical": false,
+          "scrollWidth": 667,
+          "clientWidth": 667,
+          "scrollHeight": 375,
+          "clientHeight": 375
+        },
+        "visibleText": "SCORE 0 SHIFT 90 CUSTOMER 24 MISTAKES 0/3 THREAT 0% Pause Reset Order Tab Lv 1 Ava AT WINDOW pre-shift street / at windowstreet ambience steam 1 x fries no drink First visitor steps from the pre-shift street to the service window. Prep FRIES 0 BURGERS 0 NUGGETS 0 STRIPS 0 DRINK - bun patty lettuce tomato sauce lemonade soda smoothie juice FRYER idle GRILL idle OVEN idle DISPENSER idle Fryer Grill Burger Oven nuggets Oven strips Drink Serve Quick Clear Hold Shutter"
+      },
+      "pass": true
+    },
+    {
+      "name": "tablet-landscape-active.png",
+      "inspection": {
+        "boxes": {
+          "hud-topbar": {
+            "x": 10,
+            "y": 10,
+            "width": 1004,
+            "height": 62,
+            "text": "Score0Shift90Customer24Mistakes0/3Threat0%PauseReset"
+          },
+          "order-panel": {
+            "x": 10,
+            "y": 86,
+            "width": 280,
+            "height": 350,
+            "text": "OrderTabLv 1Avaat windowpre-shift street / at windowstreet ambience steam1 x friesno drinkEsc pauseE quickTab detailsFirst visitor steps from the pre-shift street to the service window."
+          },
+          "prep-panel": {
+            "x": 734,
+            "y": 86,
+            "width": 280,
+            "height": 490,
+            "text": "PrepFries0Burgers0Nuggets0Strips0Drink-bunpattylettucetomatosaucelemonadesodasmoothiejuiceFryeridleGrillidleOvenidleDispenseridle"
+          },
+          "action-dock": {
+            "x": 10,
+            "y": 659,
+            "width": 1004,
+            "height": 73,
+            "text": "FryerGrill BurgerOven nuggetsOven stripsDrinkServeQuickClearHold Shutter"
+          },
+          "active-encounter-flow": {
+            "x": 23,
+            "y": 161,
+            "width": 202,
+            "height": 36,
+            "text": "pre-shift street / at window"
+          },
+          "active-street-ambience": {
+            "x": 23,
+            "y": 179,
+            "width": 202,
+            "height": 36,
+            "text": "street ambience steam"
+          }
+        },
+        "overflow": {
+          "horizontal": false,
+          "vertical": false,
+          "scrollWidth": 1024,
+          "clientWidth": 1024,
+          "scrollHeight": 768,
+          "clientHeight": 768
+        },
+        "visibleText": "SCORE 0 SHIFT 90 CUSTOMER 24 MISTAKES 0/3 THREAT 0% Pause Reset Order Tab Lv 1 Ava AT WINDOW pre-shift street / at windowstreet ambience steam 1 x fries no drink Esc pause E quick Tab details First visitor steps from the pre-shift street to the service window. Prep FRIES 0 BURGERS 0 NUGGETS 0 STRIPS 0 DRINK - bun patty lettuce tomato sauce lemonade soda smoothie juice FRYER idle GRILL idle OVEN idle DISPENSER idle Fryer Grill Burger Oven nuggets Oven strips Drink Serve Quick Clear Hold Shutter SERVED 0 REPELLED 0 PROTECTION 0%"
+      },
+      "pass": true
+    },
+    {
+      "name": "portrait rotate gate visible",
+      "pass": true
+    }
+  ],
+  "desktop_active_inspection": {
+    "boxes": {
+      "hud-topbar": {
+        "x": 10,
+        "y": 10,
+        "width": 1346,
+        "height": 62,
+        "text": "Score0Shift89Customer23Mistakes0/3Threat0%PauseReset"
+      },
+      "order-panel": {
+        "x": 10,
+        "y": 86,
+        "width": 280,
+        "height": 350,
+        "text": "OrderTabLv 1Avaat windowpre-shift street / at windowstreet ambience steam1 x friesno drinkEsc pauseE quickTab detailsFirst visitor steps from the pre-shift street to the service window."
+      },
+      "prep-panel": {
+        "x": 1076,
+        "y": 86,
+        "width": 280,
+        "height": 490,
+        "text": "PrepFries0Burgers0Nuggets0Strips0Drink-bunpattylettucetomatosaucelemonadesodasmoothiejuiceFryeridleGrillidleOvenidleDispenseridle"
+      },
+      "action-dock": {
+        "x": 10,
+        "y": 659,
+        "width": 1346,
+        "height": 73,
+        "text": "FryerGrill BurgerOven nuggetsOven stripsDrinkServeQuickClearHold Shutter"
+      },
+      "active-encounter-flow": {
+        "x": 23,
+        "y": 161,
+        "width": 202,
+        "height": 36,
+        "text": "pre-shift street / at window"
+      },
+      "active-street-ambience": {
+        "x": 23,
+        "y": 179,
+        "width": 202,
+        "height": 36,
+        "text": "street ambience steam"
+      }
+    },
+    "overflow": {
+      "horizontal": false,
+      "vertical": false,
+      "scrollWidth": 1366,
+      "clientWidth": 1366,
+      "scrollHeight": 768,
+      "clientHeight": 768
+    },
+    "visibleText": "SCORE 0 SHIFT 89 CUSTOMER 23 MISTAKES 0/3 THREAT 0% Pause Reset Order Tab Lv 1 Ava AT WINDOW pre-shift street / at windowstreet ambience steam 1 x fries no drink Esc pause E quick Tab details First visitor steps from the pre-shift street to the service window. Prep FRIES 0 BURGERS 0 NUGGETS 0 STRIPS 0 DRINK - bun patty lettuce tomato sauce lemonade soda smoothie juice FRYER idle GRILL idle OVEN idle DISPENSER idle Fryer Grill Burger Oven nuggets Oven strips Drink Serve Quick Clear Hold Shutter SERVED 0 REPELLED 0 PROTECTION 0%"
+  },
+  "anomaly_shutter_path": {
+    "status": "pass",
+    "beforeShutterText": "street queue / approaching / served leaving / replacement approaching",
+    "afterShutterText": "street queue / approaching / repelled leaving / replacement approaching"
+  },
+  "console_network_findings": {
+    "consoleMessages": [
+      "warning: [.WebGL-0x1400169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x140016ae00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x1400169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "warning: [.WebGL-0x1400169600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+    ],
+    "failedRequests": []
+  },
+  "accessibility_findings": "controls visible by role/test id; portrait gate visible; touch-target checks covered by npm run test:browser",
+  "visual_findings": "no horizontal overflow in inspected responsive active states; HUD/order/action controls visible; active encounter marker separate from active street ambience marker",
+  "residual_risks": "screenshots are lab evidence only; no full pixel diff baseline. Build reports existing large JS chunk warning.",
+  "waiver": {
+    "status": "none",
+    "reason": "none",
+    "approved_by": "none"
+  }
+}

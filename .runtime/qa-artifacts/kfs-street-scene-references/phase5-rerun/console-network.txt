@@ -1,0 +1,17 @@
+{
+  "initial": {
+    "storageVisible": true,
+    "kitchenVisible": true,
+    "windowVisible": true,
+    "guideVisible": true,
+    "calloutVisible": true,
+    "workerVisible": true,
+    "workerZone": "window",
+    "serviceText": "Storagetray / ingredientsKitchen StationsFryeridleGrillidleOvenidleDrinksidleService Windowserve trayNextStart fries at Fryer",
+    "guideText": "Next stepStart fries at Fryer",
+    "calloutText": "NextStart fries at Fryer",
+    "pageScroll": false
+  },
+  "consoleErrors": [],
+  "requestFailures": []
+}
