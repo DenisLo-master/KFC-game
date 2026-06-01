@@ -7,6 +7,7 @@ import { summarizePrepared } from '../features/orders/types';
 import { getAudioEnabled, installAudioUnlock, playGameSound, setAudioEnabled, type GameSound } from '../shared/audio';
 import { formatTime } from '../shared/format';
 import { getSceneVisualState, type StreetPedestrianVisualState } from '../shared/sceneVisualState';
+import { usePrefersReducedMotion } from '../shared/usePrefersReducedMotion';
 
 const drinkOptions: DrinkFlavor[] = ['lemonade', 'soda', 'smoothie', 'juice'];
 const burgerIngredients: BurgerIngredient[] = ['bun', 'patty', 'lettuce', 'tomato', 'sauce'];
@@ -139,6 +140,7 @@ function PreShiftStreetStatus() {
   const shiftTimer = useGameStore((state) => state.shiftTimer);
   const street = useGameStore((state) => state.preShiftStreet);
   const [pulse, setPulse] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const ambienceLabel = useMemo(() => street.ambience.join(', '), [street.ambience]);
   const pedestrianLabel = useMemo(
     () =>
@@ -149,10 +151,10 @@ function PreShiftStreetStatus() {
   );
 
   useEffect(() => {
-    if (phase !== 'menu') return;
+    if (phase !== 'menu' || prefersReducedMotion) return;
     const id = window.setInterval(() => setPulse((value) => (value + 1) % 4), 800);
     return () => window.clearInterval(id);
-  }, [phase]);
+  }, [phase, prefersReducedMotion]);
 
   if (phase !== 'menu') return null;
 
@@ -367,12 +369,13 @@ function ActiveEncounterFlowStatus() {
   const encounterFlow = useGameStore((state) => state.encounterFlow);
   const street = useGameStore((state) => state.preShiftStreet);
   const [pulse, setPulse] = useState(0);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (phase !== 'playing') return;
+    if (phase !== 'playing' || prefersReducedMotion) return;
     const id = window.setInterval(() => setPulse((value) => (value + 1) % 4), 800);
     return () => window.clearInterval(id);
-  }, [phase]);
+  }, [phase, prefersReducedMotion]);
 
   if (phase !== 'playing') return null;
 

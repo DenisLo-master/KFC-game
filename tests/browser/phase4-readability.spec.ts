@@ -51,7 +51,9 @@ async function waitForReferenceArt(page: import('@playwright/test').Page) {
 }
 
 test.describe('Phase 4 visitor readability', () => {
-  test('pre-shift exposes all ordinary archetypes and KFS worker identity', async ({ page }) => {
+  test('validates visitor readability, anomaly samples, and active customer cues with one page lifecycle', async ({ page }) => {
+    test.setTimeout(90_000);
+
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
     await waitForReferenceArt(page);
@@ -69,26 +71,18 @@ test.describe('Phase 4 visitor readability', () => {
     }
     await expect(matrix).toContainText(/ordinary/i);
     await expect(page.getByRole('button', { name: 'Start Shift' })).toBeVisible();
-  });
 
-  test('phone landscape keeps archetype and worker identity readable before start', async ({ page }) => {
     await page.setViewportSize({ width: 667, height: 375 });
     await page.goto('/');
     await waitForReferenceArt(page);
-
     await expect(page.getByTestId('orientation-gate')).toBeHidden();
     await expect(page.getByTestId('ordinary-archetype-matrix')).toBeVisible();
     await expect(page.getByTestId('worker-identity-context')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollHeight > window.innerHeight)).toBe(false);
 
-    const hasPageScroll = await page.evaluate(() => document.documentElement.scrollHeight > window.innerHeight);
-    expect(hasPageScroll).toBe(false);
-  });
-
-  test('browser-visible active visitor samples cover normal and approved anomaly cues', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
     await waitForReferenceArt(page);
-
     const samples = page.getByTestId('visitor-readability-samples');
     await expect(samples).toBeVisible();
     await expect(page.getByTestId('sample-normal')).toContainText(/normal/i);
@@ -112,10 +106,8 @@ test.describe('Phase 4 visitor readability', () => {
       });
     expect(shadowEyeCue.backgroundColor).toBe('rgb(2, 6, 23)');
     expect(shadowEyeCue.boxShadow).toBe('none');
-  });
 
-  for (const cue of activeCueCases) {
-    test(`active current customer exposes readable ${cue.kind} state`, async ({ page }) => {
+    for (const cue of activeCueCases) {
       await page.setViewportSize({ width: 1280, height: 720 });
       await page.goto('/?phase4-readability=1');
       await waitForReferenceArt(page);
@@ -147,12 +139,15 @@ test.describe('Phase 4 visitor readability', () => {
       await expect(page.getByTestId('shutter-action')).toBeVisible();
 
       await captureArtifact(page, cue.artifact);
-    });
-  }
+    }
+  });
 });
 
 declare global {
   interface Window {
-    __kfsPhase4SetActiveCustomer?: (kind: ActiveCueCase['kind']) => void;
+    __kfsPhase4SetActiveCustomer?: (
+      kind: ActiveCueCase['kind'],
+      options?: { customerTimer?: number; threat?: number },
+    ) => void;
   }
 }

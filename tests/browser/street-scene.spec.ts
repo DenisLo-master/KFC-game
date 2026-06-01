@@ -145,12 +145,14 @@ async function captureArtifact(page: import('@playwright/test').Page, path: stri
 }
 
 test.describe('Phase 2 pre-shift street scene', () => {
-  test('first load exposes a KFS street scene while keeping quick start available', async ({ page }) => {
+  test('validates reference-backed pre-shift and service continuity with one page lifecycle', async ({ page }) => {
+    test.setTimeout(120_000);
+
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
     await waitForReferenceArt(page);
 
-    await expect(page.locator('canvas')).toBeVisible();
+    await expect(page.locator('canvas')).toBeHidden();
     await expect(page.getByTestId('reference-scene')).toHaveAttribute('data-reference-mode', 'exterior-kiosk');
     await expect(page.getByTestId('reference-exterior-layer')).toBeVisible();
     await expect(page.getByTestId('pre-shift-street')).toBeVisible();
@@ -159,9 +161,7 @@ test.describe('Phase 2 pre-shift street scene', () => {
     await expect(page.getByTestId('street-pedestrian-flow')).toContainText(/future visitor/i);
     await expect(page.getByTestId('pre-shift-safety')).toContainText(/safe observation/i);
     await expect(page.getByRole('button', { name: 'Start Shift' })).toBeVisible();
-  });
 
-  test('reference-backed frame renders a nonblank kiosk scene on desktop and phone landscape', async ({ page }) => {
     for (const viewport of [
       { width: 1280, height: 720 },
       { width: 667, height: 375 },
@@ -179,26 +179,20 @@ test.describe('Phase 2 pre-shift street scene', () => {
       expect(renderState.lumaVariance).toBeGreaterThan(120);
       expect(renderState.nonBackgroundRatio).toBeGreaterThan(0.28);
     }
-  });
 
-  test('captures visual acceptance artifacts for reference-backed pre-shift', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await page.goto('/');
     await waitForReferenceArt(page);
-
     await captureArtifact(page, '.runtime/qa-artifacts/kfs-street-scene-references/phase5/pre-shift-reference-desktop.png');
 
     await page.setViewportSize({ width: 667, height: 375 });
     await page.goto('/');
     await waitForReferenceArt(page);
     await captureArtifact(page, '.runtime/qa-artifacts/kfs-street-scene-references/phase5/pre-shift-reference-mobile.png');
-  });
 
-  test('pre-shift ambience changes while waiting without starting gameplay or penalties', async ({ page }) => {
     await page.setViewportSize({ width: 960, height: 540 });
     await page.goto('/');
     await waitForReferenceArt(page);
-
     const ambience = page.getByTestId('street-ambient-layer');
     const firstPulse = await ambience.getAttribute('data-ambient-pulse');
 
@@ -215,31 +209,25 @@ test.describe('Phase 2 pre-shift street scene', () => {
 
     const nextPulse = await ambience.getAttribute('data-ambient-pulse');
     expect(nextPulse).not.toBe(firstPulse);
-  });
 
-  test('phone landscape menu keeps street identity visible behind the overlay', async ({ page }) => {
     await page.setViewportSize({ width: 667, height: 375 });
     await page.goto('/');
     await waitForReferenceArt(page);
-
     await expect(page.getByTestId('orientation-gate')).toBeHidden();
     await expect(page.getByTestId('pre-shift-street')).toBeVisible();
     await expect(page.getByTestId('street-kiosk-anchor')).toBeVisible();
     await expect(page.getByTestId('street-pedestrian-flow')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Start Shift' })).toBeVisible();
-  });
 
-  test('start shift exposes street-to-window encounter continuity while ambience remains active', async ({ page }) => {
     await page.setViewportSize({ width: 960, height: 540 });
     await page.goto('/');
     await waitForReferenceArt(page);
-
-    const ambience = page.getByTestId('street-ambient-layer');
-    const firstPulse = await ambience.getAttribute('data-ambient-pulse');
+    const activeFirstPulse = await page.getByTestId('street-ambient-layer').getAttribute('data-ambient-pulse');
 
     await page.getByRole('button', { name: 'Start Shift' }).click();
 
     await expect(page.getByTestId('reference-scene')).toHaveAttribute('data-reference-mode', 'service-window');
+    await expect(page.locator('canvas')).toBeVisible();
     await expect(page.getByTestId('reference-service-layer')).toBeVisible();
     await expect(page.getByTestId('reference-active-visitor-layer')).toBeVisible();
     await expect(page.getByTestId('hud-topbar')).toBeVisible();
@@ -250,13 +238,10 @@ test.describe('Phase 2 pre-shift street scene', () => {
     await expect(page.getByTestId('action-dock')).toBeVisible();
 
     await page.waitForTimeout(1200);
-    const nextPulse = await page.getByTestId('active-street-ambience').getAttribute('data-ambient-pulse');
-    expect(nextPulse).not.toBe(firstPulse);
-
+    const activeNextPulse = await page.getByTestId('active-street-ambience').getAttribute('data-ambient-pulse');
+    expect(activeNextPulse).not.toBe(activeFirstPulse);
     await captureArtifact(page, '.runtime/qa-artifacts/kfs-street-scene-references/phase5/active-service-reference.png');
-  });
 
-  test('normal serve exposes departure and replacement flow without hiding controls', async ({ page }) => {
     await page.setViewportSize({ width: 960, height: 540 });
     await page.goto('/');
     await waitForReferenceArt(page);
